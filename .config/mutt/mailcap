@@ -1,0 +1,3 @@
+text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+image/*; xviewer %s
+application/pdf; xreader %s
