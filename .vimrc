@@ -1,15 +1,14 @@
-set nocompatible
 filetype on
 filetype plugin on
 filetype indent on
 syntax on
+set nocompatible
 set number
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set nobackup
 set scrolloff=10
-set nowrap
 set incsearch
 set showcmd
 set showmode
@@ -18,15 +17,8 @@ set hlsearch
 set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-
-if has('termguicolors')
-    set termguicolors
-endif
-
 set background=dark
 
-let g:everforest_background='hard'
-let g:everforest_better_performance=1
 
 
 " PLUGINS ---------------------------------------------------------------- {{{
@@ -34,9 +26,14 @@ let g:everforest_better_performance=1
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
+let g:everforest_background='hard'
+let g:everforest_better_performance=1
+let g:ale_python_flake8_options = '--max-line-length=120'
+let g:rainbow_active = 1
 
 " }}}
 
@@ -58,6 +55,11 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+
+if has('termguicolors')
+    set termguicolors
+endif
 
 
 au BufRead /tmp/mutt-* set tw=144
