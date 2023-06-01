@@ -20,6 +20,8 @@ alias ssh='ssh -X'
 alias sudo='sudo '
 alias vi='vim'
 
+[ '$TERM'='xterm-kitty' ] && alias ssh='kitty +kitten ssh'
+
 # PS1
 PS1='[\u@\h \W]\$ '
 
