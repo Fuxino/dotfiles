@@ -7,7 +7,9 @@ set number
 set shiftwidth=4
 set tabstop=4
 set expandtab
-set nobackup
+set backup
+set backupdir=~/.vim/backup/
+set directory=/tmp
 set scrolloff=10
 set incsearch
 set showcmd
@@ -16,7 +18,7 @@ set showmatch
 set hlsearch
 set wildmenu
 set wildmode=list:longest
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*.mp4,*.zip,*.iso,*.odt,*.tar,*.gz,*.xz,*.bz2,*.zst,*.rar,*.m4a,*.bmp,*.ogg,*.mp3,*.flv
 set background=dark
 
 
@@ -32,8 +34,8 @@ call plug#end()
 
 let g:everforest_background='hard'
 let g:everforest_better_performance=1
-let g:ale_python_flake8_options = '--max-line-length=120'
-let g:rainbow_active = 1
+let g:ale_python_flake8_options='--max-line-length=120'
+let g:rainbow_active=1
 
 " }}}
 
@@ -55,6 +57,10 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+if !isdirectory("$HOME/.vim/backup")
+    silent! execute "!mkdir ~/.vim/backup"
+endif
 
 
 if has('termguicolors')
