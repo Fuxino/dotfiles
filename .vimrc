@@ -58,10 +58,6 @@ augroup filetype_vim
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-if !isdirectory("$HOME/.vim/backup")
-    silent! execute "!mkdir ~/.vim/backup"
-endif
-
 
 if has('termguicolors')
     set termguicolors
