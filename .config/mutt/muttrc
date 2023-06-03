@@ -1,7 +1,8 @@
 source "~/.config/mutt/gpg.rc"
 source "~/.config/mutt/muttrc-sidebar"
-source "~/.config/mutt/colors
-source "~/.config/mutt/accounts/main_gmail
+source "~/.config/mutt/colors"
+source "~/.config/mutt/accounts/main_gmail"
+source "~/.config/mutt/macros"
 
 # IMAP settings
 set folder     = "imaps://imap.gmail.com/"
@@ -22,9 +23,8 @@ unset record
 set imap_check_subscribed
 
 # Abook
-set query_command    = "abook --mutt-query '%s'"
-macro index,pager    a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-bind editor          <Tab> complete-query
+set query_command   = "abook --mutt-query '%s'"
+bind editor         <Tab> complete-query
 
 # Other settings
 set header_cache     = "~/.cache/mutt"
