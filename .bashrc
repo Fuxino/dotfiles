@@ -30,6 +30,6 @@ if [ ! -d ~/.cache/mutt ]; then
 fi
 
 export SUDO_EDITOR=rvim
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
-neofetch
+export SSH_AGENT_PID=""
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
