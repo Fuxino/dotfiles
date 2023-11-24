@@ -327,7 +327,7 @@ visualizer_look = ●▮
 ## state (either unknown, play, pause, or stop) for its duration.
 ##
 #
-execute_on_player_state_change = mousemove &
+#execute_on_player_state_change = 
 #
 #playlist_show_mpd_host = no
 #
