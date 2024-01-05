@@ -1,0 +1,21 @@
+directory: ~/Music
+library: ~/Music/musiclibrary.db
+plugins: inline edit fetchart embedart mbsync
+item_fields:
+  multidisc: 1 if disctotal > 1 else 0
+import:
+  move: yes
+  timid: yes
+paths:
+  default: $albumartist/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+musicbrainz:
+  searchlimit: 10
+fetchart:
+  cautious: yes
+  minwidth: 250
+  maxwidth: 1000
+  enforce_ratio: 1%
+  sources: filesystem wikipedia coverart amazon albumart
+embedart:
+  auto: no
+  remove_art_file: yes
