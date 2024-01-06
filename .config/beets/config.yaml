@@ -1,13 +1,18 @@
 directory: ~/Music
 library: ~/Music/musiclibrary.db
-plugins: inline edit fetchart embedart mbsync
+plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info autobpm
+format_item: %the{$artist} - %the{$album} ($original_year) $atypes - %the{$title}
+format_album: %the{$albumartist} - %the{$album} ($original_year) $atypes
+sort_item: artist+ original_date+ album+ disc+ track+
+sort_album: albumartist+ original_date+ album+
+original_date: yes
 item_fields:
   multidisc: 1 if disctotal > 1 else 0
 import:
   move: yes
   timid: yes
 paths:
-  default: $albumartist/$album%aunique{}/%if{$multidisc,$disc-}$track $title
+  default: $albumartist/[$original_year]$atypes $album%aunique{}/%if{$multidisc,$disc-}$track $title
 musicbrainz:
   searchlimit: 10
 fetchart:
@@ -19,3 +24,22 @@ fetchart:
 embedart:
   auto: no
   remove_art_file: yes
+smartplaylist:
+  relative_to: ~/Music
+  playlist_dir: ~/.config/mpd/playlists
+  playlists:
+    - name: Metal_Before_90s.m3u
+      query: 'genre:Metal original_year:..1989'
+    - name: 90s_Power_Metal.m3u
+      query: 'genre:"Power Metal" original_year:1990..1999'
+    - name: 2000plus_Power_Metal.m3u
+      query: 'genre:"Power Metal" original_year:2000..'
+    - name: Symphonic_Metal.m3u
+      query: 'genre:"Symphonic Metal"'
+    - name: Gothic_Metal.m3u
+      query: 'genre:"Gothic Metal"'
+    - name: 90s_Black_Metal.m3u
+      query: 'genre:"Black Metal" original_year:1990..1999'
+    - name: Symphonic_and_Melodic_Black.m3u
+      query: ['genre:"Symphonic Black Metal"', 'genre:"Melodic Black Metal"']
+include: [ lyrics.yaml ]
