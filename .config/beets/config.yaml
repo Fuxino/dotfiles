@@ -1,13 +1,15 @@
 directory: ~/Music
 library: ~/Music/musiclibrary.db
-plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info autobpm
-format_item: %the{$artist} - %the{$album} ($original_year) $atypes - %the{$title}
-format_album: %the{$albumartist} - %the{$album} ($original_year) $atypes
+plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info autobpm lastimport types ftintitle scrub fuzzy
+format_item: %the{$artist} - %the{$album} ($original_year)$atypes - %the{$title}
+format_album: %the{$albumartist} - %the{$album} ($original_year)$atypes
 sort_item: artist+ original_date+ album+ disc+ track+
 sort_album: albumartist+ original_date+ album+
 original_date: yes
 item_fields:
   multidisc: 1 if disctotal > 1 else 0
+types:
+  play_count: int
 import:
   move: yes
   timid: yes
@@ -42,4 +44,12 @@ smartplaylist:
       query: 'genre:"Black Metal" original_year:1990..1999'
     - name: Symphonic_and_Melodic_Black.m3u
       query: ['genre:"Symphonic Black Metal"', 'genre:"Melodic Black Metal"']
-include: [ lyrics.yaml ]
+the:
+  patterns: ^Il\s ^La\s ^Lo\s ^Gli\s ^Le\s
+ftintitle:
+  drop: yes
+scrub:
+  auto: no
+fuzzy:
+  threshold: 0.8
+include: [ lyrics.yaml, lastfm.yaml ]
