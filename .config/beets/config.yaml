@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/musiclibrary.db
-plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info autobpm lastimport types ftintitle scrub fuzzy chroma limit
+plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info autobpm lastimport types ftintitle scrub fuzzy chroma limit replaygain
 format_item: %the{$artist} - %the{$album} ($original_year)$atypes - %the{$title}
 format_album: %the{$albumartist} - %the{$album} ($original_year)$atypes
 sort_item: artist+ original_year+ original_month+ album+ disc+ track+
@@ -8,6 +8,8 @@ sort_album: albumartist+ original_year+ original_month+ album+
 original_date: yes
 item_fields:
   multidisc: 1 if disctotal > 1 else 0
+type:
+  play_count: int
 import:
   move: yes
   timid: yes
