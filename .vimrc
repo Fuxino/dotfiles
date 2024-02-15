@@ -36,6 +36,7 @@ let g:everforest_background='hard'
 let g:everforest_better_performance=1
 let g:ale_python_flake8_options='--max-line-length=150'
 let g:rainbow_active=1
+let g:ale_enabled=0
 
 " }}}
 

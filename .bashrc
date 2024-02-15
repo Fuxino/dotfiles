@@ -35,5 +35,4 @@ eval "$(beet completion)"
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
-export SSH_AGENT_PID=""
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
