@@ -11,10 +11,12 @@ complete -c man
 
 # Aliases
 alias cinnamon-restart='nohup cinnamon --replace > /dev/null 2>&1 &'
+alias clean-aurutils-cache='find ~/.cache/aurutils/sync -type d -name .git -execdir git clean -xi \;'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls -v --color=auto'
 alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
 alias ncmpcpp='systemctl --user start mpd-mpris; ncmpcpp; systemctl --user stop mpd-mpris'
+alias rm='rm -I'
 alias set-monitor='xrandr --output HDMI-1-0 --auto --left-of eDP-1 --set "PRIME Synchronization" 1 --output eDP-1 --primary'
 alias sort='sort -n'
 alias ssh='ssh -X'
