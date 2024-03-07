@@ -1,3 +1,3 @@
-macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro pager \cb <pipe-entry>'urlscan'<enter> 'Follow links with urlview'
 macro index,pager   a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 macro attach V "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>vivaldi-stable ~/.cache/mutt/mail.html<enter>"
