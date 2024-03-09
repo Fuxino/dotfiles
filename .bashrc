@@ -17,7 +17,6 @@ alias ls='ls -v --color=auto'
 alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
 alias ncmpcpp='systemctl --user start mpd-mpris; ncmpcpp; systemctl --user stop mpd-mpris'
 alias rm='rm -I'
-alias set-monitor='xrandr --output HDMI-1-0 --auto --left-of eDP-1 --set "PRIME Synchronization" 1 --output eDP-1 --primary'
 alias sort='sort -n'
 alias ssh='ssh -X'
 alias sudo='sudo '
@@ -37,4 +36,4 @@ eval "$(beet completion)"
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+fortune /usr/share/fortune/startrek /usr/share/fortune/anarchism /usr/share/fortune/asoiaf

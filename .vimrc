@@ -25,13 +25,6 @@ set background=dark
 
 " PLUGINS ---------------------------------------------------------------- {{{
 
-call plug#begin('~/.vim/plugged')
-
-Plug 'preservim/nerdtree'
-Plug 'dense-analysis/ale'
-
-call plug#end()
-
 let g:ale_linters = {'python': ['pylint'], 'c': ['cc'], 'sh': ['shell']}
 let g:ale_linters_explicit = 1
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
