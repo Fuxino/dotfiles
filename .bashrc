@@ -22,7 +22,9 @@ alias ssh='ssh -X'
 alias sudo='sudo '
 alias vi='vim'
 
-[ '$TERM'='xterm-kitty' ] && alias ssh='kitty +kitten ssh'
+if [ "$TERM" == "xterm-kitty" ]; then
+    alias ssh='kitty +kitten ssh'
+fi
 
 # PS1
 PS1='[\u@\h \W]\$ '
@@ -36,4 +38,6 @@ eval "$(beet completion)"
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
-fortune /usr/share/fortune/startrek /usr/share/fortune/anarchism /usr/share/fortune/asoiaf
+if [ "$TERM" == "xterm-kitty" ]; then
+    fortune /usr/share/fortune/startrek /usr/share/fortune/anarchism /usr/share/fortune/asoiaf
+fi

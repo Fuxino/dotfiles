@@ -20,6 +20,7 @@ set wildmenu
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*.mp4,*.zip,*.iso,*.odt,*.tar,*.gz,*.xz,*.bz2,*.zst,*.rar,*.m4a,*.bmp,*.ogg,*.mp3,*.flv
 set background=dark
+set grepprg=grep\ -nH\ $*
 
 
 
@@ -31,6 +32,7 @@ let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstri
 let g:everforest_background='hard'
 let g:everforest_better_performance=1
 let g:rainbow_active=1
+let g:tex_flavor = 'latex'
 
 " }}}
 
