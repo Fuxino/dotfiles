@@ -18,12 +18,11 @@ alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
 alias ncmpcpp='systemctl --user start mpd-mpris; ncmpcpp; systemctl --user stop mpd-mpris'
 alias rm='rm -I'
 alias sort='sort -n'
-alias ssh='ssh -X'
 alias sudo='sudo '
 alias vi='vim'
 
 if [ "$TERM" == "xterm-kitty" ]; then
-    alias ssh='kitty +kitten ssh'
+    alias ssh='kitten ssh'
 fi
 
 # PS1

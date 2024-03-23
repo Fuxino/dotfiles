@@ -26,13 +26,14 @@ set grepprg=grep\ -nH\ $*
 
 " PLUGINS ---------------------------------------------------------------- {{{
 
-let g:ale_linters = {'python': ['pylint'], 'c': ['cc'], 'sh': ['shell']}
-let g:ale_linters_explicit = 1
+let g:ale_linters={'python': ['pylint'], 'c': ['cc'], 'sh': ['shell'], 'tex': ['lacheck'], 'haskell': ['ghc']}
+let g:ale_linters_explicit=1
+let g:ale_enabled=0
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
 let g:everforest_background='hard'
 let g:everforest_better_performance=1
 let g:rainbow_active=1
-let g:tex_flavor = 'latex'
+let g:tex_flavor='latex'
 
 " }}}
 
