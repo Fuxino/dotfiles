@@ -1,0 +1,56 @@
+Config { overrideRedirect   = False
+       , font               = "Bitstream Vera Sans Mono Bold 9"
+       , bgColor            = "black"
+       , fgColor            = "#646464"
+       , position           = Top
+       , border             = BottomB
+       , borderColor        = "#646464" 
+       , allDesktops        = True
+       , pickBroadest       = True
+       , commands           = [ Run Weather "LZIB"
+                                [ "--template", "<weather> <tempC>°C"
+                                , "-L", "0"
+                                , "-H", "25"
+                                , "--low"       , "lightblue"
+                                , "--normal"    , "#f8f8f2"
+                                , "--high"      , "red"
+                                ] 9000
+                              , Run MultiCpu
+                                [ "--template"  , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%"
+                                , "--Low"       , "25"
+                                , "--High"      , "75"
+                                , "--low"       , "darkgreen"
+                                , "--normal"    , "darkorange"
+                                , "--high"      , "darkred"
+                                ] 10
+                              , Run CoreTemp
+                                [ "--template"  , "Temp: <core0>°C|<core1>°C|<core2>°C|<core3>°C|<core4>°C|<core5>°C"
+                                , "--Low"       , "60"
+                                , "--High"      , "85"
+                                , "--low"       , "darkgreen"
+                                , "--normal"    , "darkorange"
+                                , "--high"      , "darkred"
+                                ] 50
+                              , Run Memory
+                                [ "--template"  , "Mem: <usedratio>%" 
+                                , "--Low"       , "20"
+                                , "--High"      , "80"
+                                , "--low"       , "darkgreen"
+                                , "--normal"    , "darkorange"
+                                , "--high"      , "darkred"
+                                ] 10
+                              , Run Kbd
+                                [ ("it"         , "<fc=#00008B>IT</fc>") 
+                                , ("us" ,        "<fc=#8B0000>US</fc>")
+                                , ("sk(qwerty)" , "<fc=#008B00>SK</fc>")
+                                ]
+                              , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
+                              , Run Uptime
+                                [ "--template"  , "Uptime: <days>d <hours>h <minutes>m"
+                                ] 600
+                              , Run XMonadLog
+                              ]
+        , sepChar           = "%"
+        , alignSep          = "}{"
+        , template          = "%XMonadLog% } %uptime% {%multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
+        }
