@@ -19,7 +19,7 @@ ncmpcpp_directory = ~/.config/ncmpcpp
 ## MPD clients (eg. ncmpc) also use that location.
 ##
 #
-lyrics_directory = ~/.config/mpd/lyrics
+lyrics_directory = ~/.local/share/mpd/lyrics
 #
 ##### connection settings #####
 #
@@ -374,7 +374,7 @@ visualizer_look = ●▮
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = alternative
 #
 #data_fetching_delay = yes
 #
@@ -451,7 +451,7 @@ startup_screen = media_library
 ## Note: You can define startup slave screen by choosing screen from the list
 ## above or an empty value for no slave screen.
 ##
-startup_slave_screen = playlist
+#startup_slave_screen = playlist
 #
 #startup_slave_screen_focus = no
 #
@@ -459,7 +459,7 @@ startup_slave_screen = playlist
 ## Default width of locked screen (in %).  Acceptable values are from 20 to 80.
 ##
 #
-locked_screen_width_part = 60
+#locked_screen_width_part = 60
 #
 #ask_for_locked_screen_width_part = yes
 #
