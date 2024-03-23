@@ -2,13 +2,13 @@ Config { overrideRedirect   = False
        , font               = "Bitstream Vera Sans Mono Bold 9"
        , bgColor            = "black"
        , fgColor            = "#646464"
-       , position           = Top
+       , position           = TopW L 95
        , border             = BottomB
        , borderColor        = "#646464" 
        , allDesktops        = True
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
-                                [ "--template", "<weather> <tempC>°C"
+                                [ "--template", "<skyCondition> <tempC>°C"
                                 , "-L", "0"
                                 , "-H", "25"
                                 , "--low"       , "lightblue"
@@ -52,5 +52,5 @@ Config { overrideRedirect   = False
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "%XMonadLog% } %uptime% {%multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
+        , template          = "%XMonadLog% | %uptime% }{ %multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
         }

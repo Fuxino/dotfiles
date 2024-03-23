@@ -2,11 +2,14 @@ import XMonad
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Layout.Grid
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Renamed
+import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
@@ -22,8 +25,8 @@ main = xmonad
 myConfig = def
     { modMask               = mod4Mask
     , terminal              = "kitty"
-    , focusedBorderColor    = "#000000"
-    , normalBorderColor     = "#ffffff"
+    , focusedBorderColor    = "#00b300"
+    , normalBorderColor     = "#000000"
     , layoutHook            = myLayout
     , startupHook           = myStartupHook
     , manageHook            = myManageHook
@@ -32,9 +35,10 @@ myConfig = def
     [ ("M-S-l"      , spawn "xscreensaver-command -lock"    )
     , ("M-v"        , spawn "vivaldi"                       )
     , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i" )
+    , ("M-w"        , spawn "passmenu -i"                   )
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol ||| Grid ||| spiral(0.856)
     where
         threeCol
             = renamed [Replace "ThreeCol"]
@@ -45,8 +49,8 @@ myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
         ratio       = 1/2
         delta       = 3/100
 
-xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc"   (pure myXmobarPP)
-xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc"   (pure myXmobarPP)
+xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc_laptop"    (pure myXmobarPP)
+xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi"  (pure myXmobarPP)
 
 myXmobarPP :: PP
 myXmobarPP = def
@@ -77,14 +81,23 @@ myXmobarPP = def
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr"
-    spawnOnce "mons -e left"
+    spawnOnce "mons -e left && ~/.fehbg"
     spawnOnce "xscreensaver -no-splash"
     spawnOnce "redshift"
-    spawnOnce "dunst"
-    spawnOnce "~/.fehbg"
+    spawnOnce "udiskie"
+    spawnOnce "nm-applet"
+    spawnOnce "discover-overlay"
+    spawnOnce "trayer --edge top --align right --SetDockType true \
+              \--SetPartialStrut true --expand true --width 5 \
+              \--transparent true --tint 0x1f2022 --height 18 \
+              \--monitor 0"
 
 myManageHook ::  ManageHook
 myManageHook = composeAll
-    [ className =? "mpv"    --> doFullFloat
-    , isDialog              --> doFloat
+    [ insertPosition End Newer
+    , className =? "mpv"                --> doFullFloat
+    , className =? "Xviewer"            --> doFloat
+    , className =? "steam_app_109600"   --> doFloat
+    , isDialog                          --> doFloat
+    , isFullscreen                      --> doFullFloat
     ]
