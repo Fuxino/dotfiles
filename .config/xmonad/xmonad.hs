@@ -25,7 +25,7 @@ main = xmonad
 myConfig = def
     { modMask               = mod4Mask
     , terminal              = "kitty"
-    , focusedBorderColor    = "#00b300"
+    , focusedBorderColor    = "#006700"
     , normalBorderColor     = "#000000"
     , layoutHook            = myLayout
     , startupHook           = myStartupHook
@@ -83,14 +83,16 @@ myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mons -e left && ~/.fehbg"
     spawnOnce "xscreensaver -no-splash"
-    spawnOnce "redshift"
+    spawnOnce "trayer --edge top --align right --SetDockType true \
+              \--SetPartialStrut true --expand true --width 8 \
+              \--transparent true --tint 0x1f2022 --height 18 \
+              \--monitor 0"
+    spawnOnce "redshift-gtk"
     spawnOnce "udiskie"
     spawnOnce "nm-applet"
     spawnOnce "discover-overlay"
-    spawnOnce "trayer --edge top --align right --SetDockType true \
-              \--SetPartialStrut true --expand true --width 5 \
-              \--transparent true --tint 0x1f2022 --height 18 \
-              \--monitor 0"
+    spawnOnce "arch-audit-gtk"
+    spawnOnce "xcompmgr"
 
 myManageHook ::  ManageHook
 myManageHook = composeAll

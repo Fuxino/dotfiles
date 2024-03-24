@@ -13,7 +13,7 @@ Config { overrideRedirect   = False
                                 , "-H", "25"
                                 , "--low"       , "lightblue"
                                 , "--normal"    , "#f8f8f2"
-                                , "--high"      , "red"
+                                , "--high"      , "darkred"
                                 ] 9000
                               , Run MultiCpu
                                 [ "--template"  , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%"
@@ -52,5 +52,5 @@ Config { overrideRedirect   = False
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "%XMonadLog% } %uptime% {%multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
+        , template          = "%XMonadLog% | %uptime% }{%multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
         }

@@ -2,7 +2,7 @@ Config { overrideRedirect   = False
        , font               = "Bitstream Vera Sans Mono Bold 9"
        , bgColor            = "black"
        , fgColor            = "#646464"
-       , position           = TopW L 95
+       , position           = TopW L 92
        , border             = BottomB
        , borderColor        = "#646464" 
        , allDesktops        = True
@@ -13,7 +13,7 @@ Config { overrideRedirect   = False
                                 , "-H", "25"
                                 , "--low"       , "lightblue"
                                 , "--normal"    , "#f8f8f2"
-                                , "--high"      , "red"
+                                , "--high"      , "darkred"
                                 ] 9000
                               , Run MultiCpu
                                 [ "--template"  , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%"
