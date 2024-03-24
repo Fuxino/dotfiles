@@ -18,6 +18,7 @@ alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
 alias rm='rm -I'
 alias sort='sort -n'
 alias sudo='sudo '
+alias trayer='trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 8 --transparent true --tint 0x1f2022 --height 18 --monitor 0'
 alias vi='vim'
 
 if [ "$TERM" == "xterm-kitty" ]; then
