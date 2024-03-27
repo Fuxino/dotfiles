@@ -16,7 +16,7 @@ Config { overrideRedirect   = False
                                 , "--high"      , "darkred"
                                 ] 9000
                               , Run MultiCpu
-                                [ "--template"  , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%|<total4>%|<total5>%"
+                                [ "--template"  , "Cpu: <total>%"
                                 , "--Low"       , "25"
                                 , "--High"      , "75"
                                 , "--low"       , "darkgreen"
@@ -41,7 +41,7 @@ Config { overrideRedirect   = False
                                 ] 10
                               , Run Kbd
                                 [ ("it"         , "<fc=#00008B>IT</fc>") 
-                                , ("us" ,        "<fc=#8B0000>US</fc>")
+                                , ("us"         , "<fc=#8B0000>US</fc>")
                                 , ("sk(qwerty)" , "<fc=#008B00>SK</fc>")
                                 ]
                               , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10

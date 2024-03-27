@@ -1,10 +1,11 @@
 -- Import
-import XMonad
+import XMonad as X
 
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition
+import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
@@ -18,8 +19,8 @@ import XMonad.Layout.ThreeColumns
 -- Layout modifiers
 import XMonad.Layout.LayoutCombinators
 import XMonad.Layout.Magnifier
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
-import XMonad.Layout.ShowWName
 
 -- Util
 import XMonad.Util.EZConfig
@@ -29,6 +30,9 @@ import XMonad.Util.SpawnOnce
 -- Extra keys
 import Graphics.X11.ExtraTypes.XF86
 
+import XMonad.StackSet as W
+
+
 -- Main
 main :: IO ()
 main = xmonad
@@ -37,14 +41,20 @@ main = xmonad
      . withEasySB (xmobar1 <> xmobar2) defToggleStrutsKey
      $ myConfig
 
+-- Variables
+myModMask   = mod4Mask
+
+myTerminal :: String
+myTerminal  = "kitty"
+
 -- Config
 myConfig = def
-    { modMask               = mod4Mask
-    , terminal              = "kitty"
-    , workspaces            = myWorkspaces
+    { modMask               = myModMask
+    , terminal              = myTerminal
+    , X.workspaces          = myWorkspaces
     , focusedBorderColor    = "#006700"
     , normalBorderColor     = "#000000"
-    , layoutHook            = showWName myLayout
+    , layoutHook            = myLayout
     , startupHook           = myStartupHook
     , manageHook            = myManageHook
     }
@@ -66,11 +76,15 @@ myConfig = def
     ]
 
 -- Workspaces
-myWorkspaces = [ "1:term", "2:web", "3:games", "4:msg" ] ++ map show [5..9]
+myWorkspaces :: [String]
+myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 " ] ++ map show [6..9]
 
 -- Layout
-myLayout = tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
+myLayout = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
     where
+        myWebLayout = avoidStruts $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral(0.856)
+        myGamesLayout = avoidStruts $ Full
+        myDefaultLayout = avoidStruts $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
         threeCol
             = renamed [Replace "ThreeCol"]
             $ magnifiercz' 1.3
@@ -106,7 +120,7 @@ myXmobarPP = def
         formatUnfocused = wrap (lowWhite    "[") (lowWhite  "]") . white        . ppWindow
 
         ppWindow :: String -> String
-        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 25
 
         blue, lowWhite, darkgreen, red, white, yellow :: String -> String
         darkgreen   = xmobarColor "#013220" ""
@@ -136,15 +150,20 @@ myStartupHook = do
 -- Manage hook
 myManageHook ::  ManageHook
 myManageHook = composeAll
-    [ className =? "kitty"              --> doShift "1:term"
-    , className =? "Vivaldi-stable"     --> doShift "2:web"
-    , className =? "steam"              --> doShift "3:games"
-    , className =? "discord"            --> doShift "4:msg"
-    , className =? "Signal"             --> doShift "4:msg"
+    [ className =? "kitty"              --> doShift "1:\xf489 "
+    , className =? "Vivaldi-stable"     --> doShift "2:\xe743 "
+    , className =? "steam"              --> doShift "3:\xf1b6 "
+    , className =? "discord"            --> doShift "4:\xf10b "
+    , className =? "Signal"             --> doShift "4:\xf10b "
     , className =? "mpv"                --> doFullFloat
+    , className =? "mpv"                --> doShift "5:\xead9 "
+    , className =? "Gpodder"            --> doShift "5:\xead9 "
     , className =? "Xviewer"            --> doFloat
     , className =? "Galculator"         --> doFloat
     , className =? "steam_app_109600"   --> doFloat
+    , className =? "Xmessage"           --> doFloat
+    , className =? "Windscribe2"        --> doShift "9"
+    , className =? "Windscribe2"        --> doRectFloat (W.RationalRect 0.4 0.4 0.6 0.6)
     , isDialog                          --> doFloat
     , isFullscreen                      --> doFullFloat
     ]
