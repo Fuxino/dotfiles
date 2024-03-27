@@ -15,7 +15,6 @@ alias clean-aurutils-cache='find ~/.cache/aurutils/sync -type d -name .git -exec
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls -v --color=auto'
 alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
-alias ncmpcpp='systemctl --user start mpd-mpris; ncmpcpp; systemctl --user stop mpd-mpris'
 alias rm='rm -I'
 alias sort='sort -n'
 alias sudo='sudo '
