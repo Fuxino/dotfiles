@@ -26,6 +26,9 @@ import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.SpawnOnce
 
+-- Extra keys
+import Graphics.X11.ExtraTypes.XF86
+
 -- Main
 main :: IO ()
 main = xmonad
@@ -47,15 +50,23 @@ myConfig = def
     }
     `additionalKeysP`
     [ ("M-S-l"      , spawn "xscreensaver-command -lock"    )
-    , ("M-v"        , spawn "vivaldi"                       )
     , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i" )
     , ("M-d"        , spawn "dmenu_run"                     )
     , ("M-p"        , spawn "passmenu -i"                   )
     , ("M-f"        , sendMessage $ JumpToLayout "Tabbed"   )
     ]
+    `additionalKeys`
+    [ ((0, xF86XK_AudioMute)        , spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"  )
+    , ((0, xF86XK_AudioLowerVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) -10%"  )
+    , ((0, xF86XK_AudioRaiseVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) +10%"  )
+    , ((0, xF86XK_Calculator)       , spawn "galculator"                                            )
+    , ((0, xF86XK_HomePage)         , spawn "vivaldi"                                               )
+    , ((0, xF86XK_Mail)             , spawn "kitty mutt"                                            )
+    , ((0, xF86XK_Tools)            , spawn "kitty ncmpcpp"                                         )
+    ]
 
 -- Workspaces
-myWorkspaces = [ "1:term", "2:www", "3:games", "4:msg" ] ++ map show [5..9]
+myWorkspaces = [ "1:term", "2:web", "3:games", "4:msg" ] ++ map show [5..9]
 
 -- Layout
 myLayout = tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
@@ -125,14 +136,14 @@ myStartupHook = do
 -- Manage hook
 myManageHook ::  ManageHook
 myManageHook = composeAll
-    [ insertPosition End Newer
-    , className =? "kitty"              --> doShift "1:term"
-    , className =? "Vivaldi-stable"     --> doShift "2:www"
+    [ className =? "kitty"              --> doShift "1:term"
+    , className =? "Vivaldi-stable"     --> doShift "2:web"
     , className =? "steam"              --> doShift "3:games"
     , className =? "discord"            --> doShift "4:msg"
     , className =? "Signal"             --> doShift "4:msg"
     , className =? "mpv"                --> doFullFloat
     , className =? "Xviewer"            --> doFloat
+    , className =? "Galculator"         --> doFloat
     , className =? "steam_app_109600"   --> doFloat
     , isDialog                          --> doFloat
     , isFullscreen                      --> doFullFloat

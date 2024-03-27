@@ -1,5 +1,5 @@
 Config { overrideRedirect   = False
-       , font               = "Bitstream Vera Sans Mono Bold 9"
+       , font               = "Jetbrains Mono Nerd Font Bold 9"
        , bgColor            = "black"
        , fgColor            = "#646464"
        , position           = TopW L 93
