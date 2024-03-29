@@ -62,11 +62,14 @@ myConfig = def
     , manageHook            = myManageHook
     }
     `additionalKeysP`
-    [ ("M-S-l"      , spawn "slock"                         )
-    , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i" )
-    , ("M-d"        , spawn "dmenu_run"                     )
-    , ("M-p"        , spawn "passmenu -i"                   )
-    , ("M-f"        , sendMessage $ JumpToLayout "Tabbed"   )
+    [ ("M-S-l"      , spawn "slock"                                         )
+    , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i"                 )
+    , ("M-d"        , spawn "dmenu_run"                                     )
+    , ("M-p"        , spawn "passmenu -i"                                   )
+    , ("M-f"        , sendMessage $ JumpToLayout "Tabbed"                   )
+    , ("M-i"        , spawn "setxkbmap -layout it,us,sk -variant ,,qwerty"  )
+    , ("M-u"        , spawn "setxkbmap -layout us,it,sk -variant ,,qwerty"  )
+    , ("M-s"        , spawn "setxkbmap -layout sk,it,us -variant qwerty,,"  )
     ]
     `additionalKeys`
     [ ((0, xF86XK_AudioMute)        , spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"  )
