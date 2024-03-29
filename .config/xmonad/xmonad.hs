@@ -1,5 +1,9 @@
 -- Import
-import XMonad as X
+import XMonad
+
+-- Actions
+import XMonad.Actions.PhysicalScreens
+import Data.Default
 
 -- Hooks
 import XMonad.Hooks.DynamicLog
@@ -30,8 +34,7 @@ import XMonad.Util.SpawnOnce
 -- Extra keys
 import Graphics.X11.ExtraTypes.XF86
 
-import XMonad.StackSet as W
-
+import qualified XMonad.StackSet as W
 
 -- Main
 main :: IO ()
@@ -51,7 +54,7 @@ myTerminal  = "kitty"
 myConfig = def
     { modMask               = myModMask
     , terminal              = myTerminal
-    , X.workspaces          = myWorkspaces
+    , workspaces            = myWorkspaces
     , focusedBorderColor    = "#006700"
     , normalBorderColor     = "#000000"
     , layoutHook            = myLayout
@@ -59,7 +62,7 @@ myConfig = def
     , manageHook            = myManageHook
     }
     `additionalKeysP`
-    [ ("M-S-l"      , spawn "xscreensaver-command -lock"    )
+    [ ("M-S-l"      , spawn "slock"                         )
     , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i" )
     , ("M-d"        , spawn "dmenu_run"                     )
     , ("M-p"        , spawn "passmenu -i"                   )
@@ -74,10 +77,15 @@ myConfig = def
     , ((0, xF86XK_Mail)             , spawn "kitty mutt"                                            )
     , ((0, xF86XK_Tools)            , spawn "kitty ncmpcpp"                                         )
     ]
+    ++
+    [((myModMask .|. mask, key),    f sc)
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
+        , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
+    ]
 
 -- Workspaces
 myWorkspaces :: [String]
-myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 " ] ++ map show [6..9]
+myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 ", "6:\xeb69 " ] ++ map show [7..9]
 
 -- Layout
 myLayout = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
@@ -135,7 +143,7 @@ myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mons -e left && ~/.fehbg"
-    spawnOnce "xscreensaver -no-splash"
+    spawnOnce "xautolock -time 10 -locker slock -detectsleep"
     spawnOnce "trayer --edge top --align right --SetDockType true \
               \--SetPartialStrut true --expand true --width 7 \
               \--transparent true --tint 0x1f2022 --height 18 \
@@ -146,24 +154,31 @@ myStartupHook = do
     spawnOnce "discover-overlay"
     spawnOnce "arch-audit-gtk"
     spawnOnce "xcompmgr"
+    spawnOnce "dunst"
 
 -- Manage hook
 myManageHook ::  ManageHook
 myManageHook = composeAll
-    [ className =? "kitty"              --> doShift "1:\xf489 "
-    , className =? "Vivaldi-stable"     --> doShift "2:\xe743 "
-    , className =? "steam"              --> doShift "3:\xf1b6 "
-    , className =? "discord"            --> doShift "4:\xf10b "
-    , className =? "Signal"             --> doShift "4:\xf10b "
-    , className =? "mpv"                --> doFullFloat
-    , className =? "mpv"                --> doShift "5:\xead9 "
-    , className =? "Gpodder"            --> doShift "5:\xead9 "
-    , className =? "Xviewer"            --> doFloat
-    , className =? "Galculator"         --> doFloat
-    , className =? "steam_app_109600"   --> doFloat
-    , className =? "Xmessage"           --> doFloat
-    , className =? "Windscribe2"        --> doShift "9"
-    , className =? "Windscribe2"        --> doRectFloat (W.RationalRect 0.4 0.4 0.6 0.6)
-    , isDialog                          --> doFloat
-    , isFullscreen                      --> doFullFloat
+    [ className =? "Galculator"             --> doFloat
+    , className =? "Gpodder"                --> doShift "5:\xead9 "
+    , className =? "Signal"                 --> doShift "4:\xf10b "
+    , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
+    , className =? "Windscribe2"            --> doShift "9"
+    , className =? "Windscribe2"            --> doRectFloat (W.RationalRect 0.4 0.4 0.6 0.6)
+    , className =? "Xmessage"               --> doFloat
+    , className =? "Xreader"                --> doShift "6:\xeb69 "
+    , className =? "Xscreensaver-settings"  --> doFloat
+    , className =? "Xviewer"                --> doFloat
+    , className =? "calibre"                --> doShift "6:\xeb69 "
+    , className =? "discord"                --> doShift "4:\xf10b "
+    , className =? "kitty"                  --> doShift "1:\xf489 "
+    , className =? "libreoffice-calc"       --> doShift "6:\xeb69 "
+    , className =? "libreoffice-writer"     --> doShift "6:\xeb69 "
+    , className =? "mpv"                    --> doFullFloat
+    , className =? "mpv"                    --> doShift "5:\xead9 "
+    , className =? "steam"                  --> doShift "3:\xf1b6 "
+    , className =? "steam_app_109600"       --> doFloat
+    , className =? "transmission-gtk"       --> doShift "2:\xe743 "
+    , isDialog                              --> doFloat
+    , isFullscreen                          --> doFullFloat
     ]
