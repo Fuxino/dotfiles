@@ -3,7 +3,7 @@ Config { overrideRedirect   = False
        , bgColor            = "black"
        , fgColor            = "#646464"
        , position           = Top
-       , border             = BottomB
+       , border             = NoBorder
        , borderColor        = "#646464" 
        , allDesktops        = True
        , pickBroadest       = True
@@ -34,7 +34,7 @@ Config { overrideRedirect   = False
                               , Run Memory
                                 [ "--template"  , "Mem: <usedratio>%" 
                                 , "--Low"       , "20"
-                                , "--High"      , "80"
+                                , "--High"      , "60"
                                 , "--low"       , "darkgreen"
                                 , "--normal"    , "darkorange"
                                 , "--high"      , "darkred"
