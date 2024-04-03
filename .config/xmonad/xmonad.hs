@@ -77,10 +77,12 @@ myScratchpads =
     [ NS "Windscribe" "windscribe" (className =? "Windscribe2") (customFloating $ W.RationalRect 0.4 0.4 0.6 0.6)
     , NS "Terminal" spawnTerminal (title =? "kitty-float") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     , NS "Music" spawnMusic (title =? "ncmpcpp") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
+    , NS "Mail" spawnMail (title =? "mutt") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     ]
     where
         spawnTerminal = myTerminal ++ " -T kitty-float"
         spawnMusic = myTerminal ++ " -T ncmpcpp ncmpcpp"
+        spawnMail = myTerminal ++ " -T mutt mutt"
 
 -- Config
 myConfig = def
@@ -113,7 +115,7 @@ myConfig = def
     , ((0, xF86XK_AudioRaiseVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) +10%"  )
     , ((0, xF86XK_Calculator)       , spawn "galculator"                                            )
     , ((0, xF86XK_HomePage)         , spawn myBrowser                                               )
-    , ((0, xF86XK_Mail)             , spawn $ myTerminal ++ " mutt"                                 )
+    , ((0, xF86XK_Mail)             , namedScratchpadAction myScratchpads "Mail"                    )
     , ((0, xF86XK_Tools)            , namedScratchpadAction myScratchpads "Music"                   )
     ]
     ++
