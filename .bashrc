@@ -13,7 +13,7 @@ complete -c man
 alias cinnamon-restart='nohup cinnamon --replace > /dev/null 2>&1 &'
 alias clean-aurutils-cache='find ~/.cache/aurutils/sync -type d -name .git -execdir git clean -xi \;'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias ls='ls -v --color=auto'
+alias ls='eza --icons --group-directories-first'
 alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
 alias rm='rm -I'
 alias sort='sort -n'
@@ -26,7 +26,7 @@ if [ "$TERM" == "xterm-kitty" ]; then
 fi
 
 # PS1
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 if [ ! -d ~/.cache/mutt ]; then
    mkdir ~/.cache/mutt
@@ -37,6 +37,10 @@ eval "$(beet completion)"
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
-if [ "$TERM" == "xterm-kitty" ]; then
-    fortune /usr/share/fortune/startrek /usr/share/fortune/anarchism /usr/share/fortune/asoiaf
-fi
+#if [ "$TERM" == "xterm-kitty" ]; then
+#    fortune /usr/share/fortune/startrek /usr/share/fortune/anarchism /usr/share/fortune/asoiaf
+#fi
+
+fastfetch
+
+eval "$(starship init bash)"
