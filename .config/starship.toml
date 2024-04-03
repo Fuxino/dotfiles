@@ -1,0 +1,39 @@
+add_newline = false
+
+[line_break]
+disabled = true
+
+[c]
+symbol = " "
+
+[directory]
+read_only = " 󰌾"
+
+[git_branch]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[os]
+disabled = false
+
+[os.symbols]
+Arch = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rust]
+symbol = " "
+[sudo]
+disabled = false
