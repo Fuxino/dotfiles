@@ -29,6 +29,7 @@ import XMonad.Layout.Renamed
 -- Util
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
 
 -- Extra keys
@@ -45,40 +46,75 @@ main = xmonad
      $ myConfig
 
 -- Variables
-myModMask   = mod4Mask
+myModMask :: KeyMask
+myModMask = mod4Mask
 
 myTerminal :: String
-myTerminal  = "kitty"
+myTerminal = "kitty"
+
+myBrowser :: String
+myBrowser = "vivaldi"
+
+myNormBorderColor :: String
+myNormBorderColor = "#000000"
+
+myFocusBorderColor :: String
+myFocusBorderColor = "#006700"
+
+myKeyboardLayoutIT :: String
+myKeyboardLayoutIT = " -layout it"
+myKeyboardLayoutUS = " -layout us"
+myKeyboardLayoutSK = " -layout sk -variant qwerty"
+
+myScreenshotDir :: String
+myScreenshotDir = "/home/fuxino/Pictures/Screenshots/"
+
+myScreenshotName :: String
+myScreenshotName = "Screenshot-%Y-%m-%d-%H%M%S.png"
+
+myScratchpads :: [NamedScratchpad]
+myScratchpads =
+    [ NS "Windscribe" "windscribe" (className =? "Windscribe2") (customFloating $ W.RationalRect 0.4 0.4 0.6 0.6)
+    , NS "Terminal" spawnTerminal (title =? "kitty-float") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
+    , NS "Music" spawnMusic (title =? "ncmpcpp") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
+    ]
+    where
+        spawnTerminal = myTerminal ++ " -T kitty-float"
+        spawnMusic = myTerminal ++ " -T ncmpcpp ncmpcpp"
 
 -- Config
 myConfig = def
     { modMask               = myModMask
     , terminal              = myTerminal
     , workspaces            = myWorkspaces
-    , focusedBorderColor    = "#006700"
-    , normalBorderColor     = "#000000"
-    , layoutHook            = myLayout
+    , focusedBorderColor    = myFocusBorderColor
+    , normalBorderColor     = myNormBorderColor
+    , layoutHook            = myLayoutHook
     , startupHook           = myStartupHook
     , manageHook            = myManageHook
     }
     `additionalKeysP`
-    [ ("M-S-l"      , spawn "slock"                                         )
-    , ("M-<Print>"  , unGrab *> spawn "gnome-screenshot -i"                 )
-    , ("M-d"        , spawn "dmenu_run"                                     )
-    , ("M-p"        , spawn "passmenu -i"                                   )
-    , ("M-f"        , sendMessage $ JumpToLayout "Tabbed"                   )
-    , ("M-i"        , spawn "setxkbmap -layout it,us,sk -variant ,,qwerty"  )
-    , ("M-u"        , spawn "setxkbmap -layout us,it,sk -variant ,,qwerty"  )
-    , ("M-s"        , spawn "setxkbmap -layout sk,it,us -variant qwerty,,"  )
+    [ ("M-S-l"          , spawn "slock"                                                             )
+    , ("<Print>"        , unGrab *> (spawn $ "scrot " ++ myScreenshotDir ++ myScreenshotName)       )
+    , ("S-<Print>"      , unGrab *> (spawn $ "scrot -s " ++ myScreenshotDir ++ myScreenshotName)    )
+    , ("M-S-<Print>"    , unGrab *> (spawn $ "scrot -u " ++ myScreenshotDir ++ myScreenshotName)    )
+    , ("M-d"            , spawn "dmenu_run"                                                         )
+    , ("M-p"            , spawn "passmenu -i"                                                       )
+    , ("M-f"            , sendMessage $ JumpToLayout "Tabbed"                                       )
+    , ("M-i"            , spawn $ "setxkbmap" ++ myKeyboardLayoutIT                                 )
+    , ("M-u"            , spawn $ "setxkbmap" ++ myKeyboardLayoutUS                                 )
+    , ("M-s"            , spawn $ "setxkbmap" ++ myKeyboardLayoutSK                                 )
+    , ("M-S-v"          , namedScratchpadAction myScratchpads "Windscribe"                          )
+    , ("M-S-s"          , namedScratchpadAction myScratchpads "Terminal"                            )
     ]
     `additionalKeys`
     [ ((0, xF86XK_AudioMute)        , spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"  )
     , ((0, xF86XK_AudioLowerVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) -10%"  )
     , ((0, xF86XK_AudioRaiseVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) +10%"  )
     , ((0, xF86XK_Calculator)       , spawn "galculator"                                            )
-    , ((0, xF86XK_HomePage)         , spawn "vivaldi"                                               )
-    , ((0, xF86XK_Mail)             , spawn "kitty mutt"                                            )
-    , ((0, xF86XK_Tools)            , spawn "kitty ncmpcpp"                                         )
+    , ((0, xF86XK_HomePage)         , spawn myBrowser                                               )
+    , ((0, xF86XK_Mail)             , spawn $ myTerminal ++ " mutt"                                 )
+    , ((0, xF86XK_Tools)            , namedScratchpadAction myScratchpads "Music"                   )
     ]
     ++
     [((myModMask .|. mask, key),    f sc)
@@ -91,7 +127,7 @@ myWorkspaces :: [String]
 myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 ", "6:\xeb69 " ] ++ map show [7..9]
 
 -- Layout
-myLayout = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
+myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
     where
         myWebLayout = avoidStruts $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral(0.856)
         myGamesLayout = avoidStruts $ Full
@@ -112,8 +148,8 @@ myLayout = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGames
         delta       = 3/100
 
 -- Xmobar
-xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc_laptop"    (pure myXmobarPP)
-xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi"  (pure myXmobarPP)
+xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc_laptop" (pure myXmobarPP)
+xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmobarPP)
 
 myXmobarPP :: PP
 myXmobarPP = def
@@ -133,9 +169,8 @@ myXmobarPP = def
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 25
 
-        blue, lowWhite, darkgreen, red, white, yellow :: String -> String
+        lowWhite, darkgreen, red, white, yellow :: String -> String
         darkgreen   = xmobarColor "#013220" ""
-        blue        = xmobarColor "#bd93f9" ""
         white       = xmobarColor "#f8f8f2" ""
         yellow      = xmobarColor "#f1fa8c" ""
         red         = xmobarColor "#ff5555" ""
@@ -144,6 +179,7 @@ myXmobarPP = def
 -- Autostart
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mons -e left && ~/.fehbg"
     spawnOnce "xautolock -time 10 -locker slock -detectsleep"
@@ -156,7 +192,6 @@ myStartupHook = do
     spawnOnce "nm-applet"
     spawnOnce "discover-overlay"
     spawnOnce "arch-audit-gtk"
-    spawnOnce "xcompmgr"
     spawnOnce "dunst"
 
 -- Manage hook
@@ -166,15 +201,13 @@ myManageHook = composeAll
     , className =? "Gpodder"                --> doShift "5:\xead9 "
     , className =? "Signal"                 --> doShift "4:\xf10b "
     , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
-    , className =? "Windscribe2"            --> doShift "9"
-    , className =? "Windscribe2"            --> doRectFloat (W.RationalRect 0.4 0.4 0.6 0.6)
     , className =? "Xmessage"               --> doFloat
     , className =? "Xreader"                --> doShift "6:\xeb69 "
     , className =? "Xscreensaver-settings"  --> doFloat
     , className =? "Xviewer"                --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
-    , className =? "kitty"                  --> doShift "1:\xf489 "
+    , className =? myTerminal               --> doShift "1:\xf489 "
     , className =? "libreoffice-calc"       --> doShift "6:\xeb69 "
     , className =? "libreoffice-writer"     --> doShift "6:\xeb69 "
     , className =? "mpv"                    --> doFullFloat
@@ -184,4 +217,4 @@ myManageHook = composeAll
     , className =? "transmission-gtk"       --> doShift "2:\xe743 "
     , isDialog                              --> doFloat
     , isFullscreen                          --> doFullFloat
-    ]
+    ] <+> namedScratchpadManageHook myScratchpads
