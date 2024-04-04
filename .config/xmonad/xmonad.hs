@@ -82,7 +82,7 @@ myScratchpads =
     where
         spawnTerminal = myTerminal ++ " -T kitty-float"
         spawnMusic = myTerminal ++ " -T ncmpcpp ncmpcpp"
-        spawnMail = myTerminal ++ " -T mutt mutt"
+        spawnMail = myTerminal ++ " -T mutt bash -c 'pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'"
 
 -- Config
 myConfig = def
@@ -113,7 +113,7 @@ myConfig = def
     [ ((0, xF86XK_AudioMute)        , spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"  )
     , ((0, xF86XK_AudioLowerVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) -10%"  )
     , ((0, xF86XK_AudioRaiseVolume) , spawn "pactl set-sink-volume $(pactl get-default-sink) +10%"  )
-    , ((0, xF86XK_Calculator)       , spawn "galculator"                                            )
+    , ((0, xF86XK_Calculator)       , spawn "qalculate-gtk"                                         )
     , ((0, xF86XK_HomePage)         , spawn myBrowser                                               )
     , ((0, xF86XK_Mail)             , namedScratchpadAction myScratchpads "Mail"                    )
     , ((0, xF86XK_Tools)            , namedScratchpadAction myScratchpads "Music"                   )
@@ -199,8 +199,8 @@ myStartupHook = do
 -- Manage hook
 myManageHook ::  ManageHook
 myManageHook = composeAll
-    [ className =? "Galculator"             --> doFloat
-    , className =? "Gpodder"                --> doShift "5:\xead9 "
+    [ className =? "Gpodder"                --> doShift "5:\xead9 "
+    , className =? "Qalculate-gtk"          --> doFloat
     , className =? "Signal"                 --> doShift "4:\xf10b "
     , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
     , className =? "Xmessage"               --> doFloat
