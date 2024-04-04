@@ -2,7 +2,7 @@
 alias clean-aurutils-cache='find ~/.cache/aurutils/sync -type d -name .git -execdir git clean -xi \;'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='eza --icons --group-directories-first'
-alias mutt='pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'
+alias mutt='bash -c "pushd ~/Downloads > /dev/null; mutt; popd > /dev/null"'
 alias rm='rm -I'
 alias sort='sort -n'
 alias ssh='kitten ssh'
