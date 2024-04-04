@@ -25,6 +25,6 @@ eval "$(beet completion)"
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
-fastfetch
-
 eval "$(starship init bash)"
+
+exec fish
