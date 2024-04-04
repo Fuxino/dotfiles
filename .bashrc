@@ -20,8 +20,6 @@ if [ ! -d ~/.cache/mutt ]; then
    mkdir ~/.cache/mutt
 fi
 
-eval "$(beet completion)"
-
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
