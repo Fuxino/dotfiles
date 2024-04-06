@@ -209,6 +209,7 @@ myManageHook = composeAll
     , className =? "Xviewer"                --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
+    , className =? "feh"                    --> doFloat
     , className =? myTerminal               --> doShift "1:\xf489 "
     , className =? "libreoffice-calc"       --> doShift "6:\xeb69 "
     , className =? "libreoffice-writer"     --> doShift "6:\xeb69 "
