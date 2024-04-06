@@ -1,5 +1,5 @@
 # interpreter for shell commands
-set shell fish
+set shell bash
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -27,6 +27,10 @@ set cursorpreviewfmt "\033[7;2m"
 set icons
 
 map gc cd ~/.config
+map gd cd ~/Development
+map gv cd ~/Videos
+map gm cd ~/Music
+map gp cd ~/Pictures
 
 # use enter for shell commands
 map <enter> shell
