@@ -37,15 +37,6 @@ cmd open &{{
     esac
 }}
 
-# define a custom 'delete' command
-# cmd delete ${{
-#     set -f
-#     printf "$fx\n"
-#     printf "delete?[y/n]"
-#     read ans
-#     [ "$ans" = "y" ] && rm -rf $fx
-# }}
-
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
 cmd extract ${{
@@ -58,24 +49,6 @@ cmd extract ${{
         *.rar) unrar x $f;;
         *.7z) 7z x $f;;
     esac
-}}
-
-# compress current file or selected files with tar and gunzip
-cmd tar ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    tar czf $1.tar.gz $1
-    rm -rf $1
-}}
-
-# compress current file or selected files with zip
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
 }}
 
 # custom commands
@@ -91,6 +64,26 @@ cmd mkfile ${{
     printf "File name: "
     read ans
     touch $ans
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+    printf "Archive name: "
+    read ans
+    mkdir $ans
+    cp -r $fx $ans
+    tar czf $ans.tar.gz $ans
+    rm -rf $ans
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+    printf "Archive name: "
+    read ans
+    mkdir $ans
+    cp -r $fx $ans
+    zip -r $ans.zip $ans
+    rm -rf $ans
 }}
 
 # trash management
@@ -114,6 +107,10 @@ cmd trash-clear %trash-empty
 
 cmd trash-restore ${{
     trash-restore
+}}
+
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
 }}
 
 # keybindings
