@@ -192,8 +192,8 @@ myStartupHook = do
     spawnOnce "redshift-gtk"
     spawnOnce "udiskie"
     spawnOnce "nm-applet"
-    spawnOnce "discover-overlay"
     spawnOnce "arch-audit-gtk"
+    spawnOnce "calcurse --daemon"
     spawnOnce "dunst"
 
 -- Manage hook

@@ -8,7 +8,7 @@ Config { overrideRedirect   = False
        , allDesktops        = True
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
-                                [ "--template", "<skyCondition> <tempC>°C"
+                                [ "--template", "<weather> <tempC>°C"
                                 , "-L", "0"
                                 , "-H", "25"
                                 , "--low"       , "lightblue"
@@ -52,5 +52,5 @@ Config { overrideRedirect   = False
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "%XMonadLog% | %uptime% }{ %multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
+        , template          = "%XMonadLog% }{ %multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
         }
