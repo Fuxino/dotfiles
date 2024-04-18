@@ -13,9 +13,6 @@ if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
 
-# PS1
-# PS1='[\u@\h \W]\$ '
-
 if [ ! -d ~/.cache/mutt ]; then
    mkdir ~/.cache/mutt
 fi
