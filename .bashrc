@@ -20,6 +20,8 @@ fi
 export EDITOR=vim
 export SUDO_EDITOR=rvim
 
+export PATH="/home/fuxino/.local/bin:$PATH"
+
 eval "$(starship init bash)"
 
 exec fish

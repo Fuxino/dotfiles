@@ -26,6 +26,10 @@ set cursorpreviewfmt "\033[7;2m"
 # Use icons
 set icons
 
+# Preview files
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
+
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -139,6 +143,8 @@ map gv cd ~/Videos
 map gm cd ~/Music
 map gp cd ~/Pictures
 map ga cd /run/user/1000/gvfs
+map gw cd ~/Downloads
+map go cd ~/Documents
 
 # archives
 map ax extract
