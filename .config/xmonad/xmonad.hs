@@ -56,10 +56,10 @@ myBrowser :: String
 myBrowser = "vivaldi"
 
 myNormBorderColor :: String
-myNormBorderColor = "#000000"
+myNormBorderColor = "#232634"
 
 myFocusBorderColor :: String
-myFocusBorderColor = "#006700"
+myFocusBorderColor = "#81c8be"
 
 myKeyboardLayoutIT :: String
 myKeyboardLayoutIT = " -layout it"
@@ -141,8 +141,8 @@ myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myG
         myTabbed
             = renamed [Replace "Tabbed"]
             $ tabbed shrinkText myTabConfig
-        myTabConfig = def { activeColor     = "#393939"
-                          , inactiveColor   = "#191b1c"
+        myTabConfig = def { activeColor     = "#737994"
+                          , inactiveColor   = "#232634"
                           }
         tiled       = Tall nmaster delta ratio
         nmaster     = 1
@@ -155,28 +155,28 @@ xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmo
 
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep             = darkgreen " • "
+    { ppSep             = teal " • "
     , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
+    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#81c8be" 2
     , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppHiddenNoWindows = surface0 . wrap " " ""
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
     , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     }
     where
-        formatFocused   = wrap (white       "[") (white     "]") . darkgreen    . ppWindow
-        formatUnfocused = wrap (lowWhite    "[") (lowWhite  "]") . white        . ppWindow
+        formatFocused   = wrap (white       "[") (white     "]") . teal . ppWindow
+        formatUnfocused = wrap (surface0    "[") (surface0  "]") . white . ppWindow
 
         ppWindow :: String -> String
-        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 25
+        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
 
-        lowWhite, darkgreen, red, white, yellow :: String -> String
-        darkgreen   = xmobarColor "#013220" ""
+        surface0, teal, red, white, yellow :: String -> String
+        teal        = xmobarColor "#81c8be" ""
         white       = xmobarColor "#f8f8f2" ""
-        yellow      = xmobarColor "#f1fa8c" ""
-        red         = xmobarColor "#ff5555" ""
-        lowWhite    = xmobarColor "#bbbbbb" ""
+        yellow      = xmobarColor "#e5c890" ""
+        red         = xmobarColor "#e78284" ""
+        surface0    = xmobarColor "#414559" ""
 
 -- Autostart
 myStartupHook :: X ()
@@ -187,7 +187,7 @@ myStartupHook = do
     spawnOnce "xautolock -time 10 -locker slock -detectsleep"
     spawnOnce "trayer --edge top --align right --SetDockType true \
               \--SetPartialStrut true --expand true --width 7 \
-              \--transparent true --tint 0x1f2022 --height 18 \
+              \--transparent true --tint 0x232634 --height 18 \
               \--monitor 0"
     spawnOnce "redshift-gtk"
     spawnOnce "udiskie"

@@ -1,53 +1,50 @@
 Config { overrideRedirect   = False
        , font               = "Jetbrains Mono Nerd Font Bold 9"
-       , bgColor            = "black"
-       , fgColor            = "#646464"
+       , bgColor            = "#232634"
+       , fgColor            = "#626880"
        , position           = TopW L 93
        , border             = NoBorder
-       , borderColor        = "#646464" 
+       , borderColor        = "#232634" 
        , allDesktops        = True
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
                                 [ "--template", "<weather> <tempC>°C"
                                 , "-L", "0"
                                 , "-H", "25"
-                                , "--low"       , "lightblue"
-                                , "--normal"    , "#f8f8f2"
-                                , "--high"      , "darkred"
+                                , "--low"       , "#8caaee"
+                                , "--normal"    , "#a6d189"
+                                , "--high"      , "#eebebe"
                                 ] 9000
                               , Run MultiCpu
                                 [ "--template"  , "Cpu: <total>%"
                                 , "--Low"       , "25"
                                 , "--High"      , "75"
-                                , "--low"       , "darkgreen"
-                                , "--normal"    , "darkorange"
-                                , "--high"      , "darkred"
+                                , "--low"       , "#a6d189"
+                                , "--normal"    , "#ef9f76"
+                                , "--high"      , "#eebebe"
                                 ] 10
                               , Run CoreTemp
                                 [ "--template"  , "Temp: <core0>°C|<core1>°C|<core2>°C|<core3>°C|<core4>°C|<core5>°C"
                                 , "--Low"       , "60"
                                 , "--High"      , "85"
-                                , "--low"       , "darkgreen"
-                                , "--normal"    , "darkorange"
-                                , "--high"      , "darkred"
+                                , "--low"       , "#a6d189"
+                                , "--normal"    , "#ef9f76"
+                                , "--high"      , "#eebebe"
                                 ] 50
                               , Run Memory
                                 [ "--template"  , "Mem: <usedratio>%" 
                                 , "--Low"       , "20"
                                 , "--High"      , "60"
-                                , "--low"       , "darkgreen"
-                                , "--normal"    , "darkorange"
-                                , "--high"      , "darkred"
+                                , "--low"       , "#a6d189"
+                                , "--normal"    , "#ef9f76"
+                                , "--high"      , "#eebebe"
                                 ] 10
                               , Run Kbd
-                                [ ("it"         , "<fc=#00008B>IT</fc>") 
-                                , ("us"         , "<fc=#8B0000>US</fc>")
-                                , ("sk(qwerty)" , "<fc=#008B00>SK</fc>")
+                                [ ("it"         , "<fc=#a6d189>IT</fc>") 
+                                , ("us"         , "<fc=#ef9f76>US</fc>")
+                                , ("sk(qwerty)" , "<fc=#eebebe>SK</fc>")
                                 ]
-                              , Run Date "%a %Y-%m-%d <fc=#8be9fd>%H:%M</fc>" "date" 10
-                              , Run Uptime
-                                [ "--template"  , "Uptime: <days>d <hours>h <minutes>m"
-                                ] 600
+                              , Run Date "%a %Y-%m-%d <fc=#81c8be>%H:%M</fc>" "date" 10
                               , Run XMonadLog
                               ]
         , sepChar           = "%"
