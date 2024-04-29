@@ -530,7 +530,7 @@ external_editor = vim
 #
 ## Note: set to yes if external editor is a console application.
 ##
-#use_console_editor = yes
+use_console_editor = yes
 #
 ##### colors definitions #####
 ##
@@ -562,11 +562,11 @@ external_editor = vim
 ## are used there is a possibility that you'll be able to use only colors with
 ## transparent background.
 #
-#colors_enabled = yes
+colors_enabled = yes
 #
 #empty_tag_color = cyan
 #
-#header_window_color = default
+header_window_color = 226
 #
 #volume_color = default
 #
@@ -574,7 +574,7 @@ external_editor = vim
 #
 #state_flags_color = default:b
 #
-#main_window_color = yellow
+main_window_color = 160
 #
 #color1 = white
 #
@@ -582,9 +582,9 @@ external_editor = vim
 #
 #progressbar_color = black:b
 #
-#progressbar_elapsed_color = green:b
+progressbar_elapsed_color = 226:b
 #
-#statusbar_color = default
+statusbar_color = 226
 #
 #statusbar_time_color = default:b
 #
@@ -592,7 +592,7 @@ external_editor = vim
 #
 #alternative_ui_separator_color = black:b
 #
-#window_border_color = green
+window_border_color = 226
 #
 #active_window_border = red
 #
