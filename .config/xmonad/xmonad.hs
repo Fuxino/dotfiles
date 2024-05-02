@@ -108,6 +108,8 @@ myConfig = def
     , ("M-s"            , spawn $ "setxkbmap" ++ myKeyboardLayoutSK                                 )
     , ("M-S-v"          , namedScratchpadAction myScratchpads "Windscribe"                          )
     , ("M-S-s"          , namedScratchpadAction myScratchpads "Terminal"                            )
+    , ("M-x"            , spawn "bluetoothctl connect E8:EE:CC:3E:A6:0D"                            )
+    , ("M-S-x"          , spawn "bluetoothctl disconnect E8:EE:CC:3E:A6:0D"                         )
     ]
     `additionalKeys`
     [ ((0, xF86XK_AudioMute)        , spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"  )
@@ -200,13 +202,14 @@ myStartupHook = do
 myManageHook ::  ManageHook
 myManageHook = composeAll
     [ className =? "Gpodder"                --> doShift "5:\xead9 "
+    , className =? "MuPDF"                  --> doShift "6:\xeb69 "
     , className =? "Qalculate-gtk"          --> doFloat
     , className =? "Signal"                 --> doShift "4:\xf10b "
+    , className =? "Spotify"                --> doShift "5:\xead9 "
+    , className =? "Viewnior"               --> doFloat
     , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
     , className =? "Xmessage"               --> doFloat
-    , className =? "Xreader"                --> doShift "6:\xeb69 "
     , className =? "Xscreensaver-settings"  --> doFloat
-    , className =? "Xviewer"                --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
     , className =? "feh"                    --> doFloat

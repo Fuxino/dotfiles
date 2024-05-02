@@ -9,7 +9,7 @@ Config { overrideRedirect   = False
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
                                 [ "--template", "<weather> <tempC>°C"
-                                , "-L", "0"
+                                , "-L", "5"
                                 , "-H", "25"
                                 , "--low"       , "#8caaee"
                                 , "--normal"    , "#a6d189"
