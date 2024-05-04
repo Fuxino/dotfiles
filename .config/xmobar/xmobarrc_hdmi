@@ -1,14 +1,15 @@
-Config { overrideRedirect   = False
+Config { overrideRedirect   = True
+       , lowerOnStart       = True
        , font               = "Jetbrains Mono Nerd Font Bold 9"
        , bgColor            = "#232634"
        , fgColor            = "#626880"
-       , position           = TopW L 93
+       , position           = Top
        , border             = NoBorder
        , borderColor        = "#232634" 
        , allDesktops        = True
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
-                                [ "--template", "<weather> <tempC>°C"
+                                [ "--template", "\xe302  <station>: <tempC>°C"
                                 , "-L", "5"
                                 , "-H", "25"
                                 , "--low"       , "#8caaee"
@@ -16,7 +17,7 @@ Config { overrideRedirect   = False
                                 , "--high"      , "#eebebe"
                                 ] 9000
                               , Run MultiCpu
-                                [ "--template"  , "Cpu: <total>%"
+                                [ "--template"  , "\xf4bc  Cpu: <total>%"
                                 , "--Low"       , "25"
                                 , "--High"      , "75"
                                 , "--low"       , "#a6d189"
@@ -24,7 +25,7 @@ Config { overrideRedirect   = False
                                 , "--high"      , "#eebebe"
                                 ] 10
                               , Run CoreTemp
-                                [ "--template"  , "Temp: <core0>°C|<core1>°C|<core2>°C|<core3>°C|<core4>°C|<core5>°C"
+                                [ "--template"  , "Temp: <core0>°C"
                                 , "--Low"       , "60"
                                 , "--High"      , "85"
                                 , "--low"       , "#a6d189"
@@ -32,22 +33,26 @@ Config { overrideRedirect   = False
                                 , "--high"      , "#eebebe"
                                 ] 50
                               , Run Memory
-                                [ "--template"  , "Mem: <usedratio>%" 
+                                [ "--template"  , "\xefc5  Mem: <usedratio>%" 
                                 , "--Low"       , "20"
                                 , "--High"      , "60"
                                 , "--low"       , "#a6d189"
                                 , "--normal"    , "#ef9f76"
                                 , "--high"      , "#eebebe"
-                                ] 10
+                                ] 50
                               , Run Kbd
                                 [ ("it"         , "<fc=#a6d189>IT</fc>") 
                                 , ("us"         , "<fc=#ef9f76>US</fc>")
                                 , ("sk(qwerty)" , "<fc=#eebebe>SK</fc>")
                                 ]
-                              , Run Date "%a %Y-%m-%d <fc=#81c8be>%H:%M</fc>" "date" 10
+                              , Run Date "\xf133  %a %Y-%m-%d <fc=#81c8be>%H:%M</fc>" "date" 10
+                              , Run Uptime
+                                [ "--template"  , "\xf017  Uptime: <days>d <hours>h <minutes>m"
+                                ] 600
+                              , Run XPropertyLog "_XMONAD_TRAYPAD"
                               , Run XMonadLog
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "%XMonadLog% }{ %multicpu% | %coretemp% | %memory% | %kbd% | %LZIB% | %date% "
+        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date% %_XMONAD_TRAYPAD%"
         }

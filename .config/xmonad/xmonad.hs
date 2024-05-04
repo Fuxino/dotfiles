@@ -28,6 +28,7 @@ import XMonad.Layout.Renamed
 
 -- Util
 import XMonad.Util.EZConfig
+import qualified XMonad.Util.Hacks as Hacks
 import XMonad.Util.Loggers
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.SpawnOnce
@@ -78,11 +79,13 @@ myScratchpads =
     , NS "Terminal" spawnTerminal (title =? "kitty-float") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     , NS "Music" spawnMusic (title =? "ncmpcpp") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     , NS "Mail" spawnMail (title =? "mutt") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
+    , NS "Cal" spawnCal (title =? "calcurse") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     ]
     where
         spawnTerminal = myTerminal ++ " -T kitty-float"
         spawnMusic = myTerminal ++ " -T ncmpcpp ncmpcpp"
         spawnMail = myTerminal ++ " -T mutt bash -c 'pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'"
+        spawnCal = myTerminal ++ " -T calcurse calcurse"
 
 -- Config
 myConfig = def
@@ -94,6 +97,7 @@ myConfig = def
     , layoutHook            = myLayoutHook
     , startupHook           = myStartupHook
     , manageHook            = myManageHook
+    , handleEventHook       = handleEventHook def <> Hacks.trayerAboveXmobarEventHook <> Hacks.trayerPaddingXmobarEventHook
     }
     `additionalKeysP`
     [ ("M-S-l"          , spawn "slock"                                                             )
@@ -108,6 +112,7 @@ myConfig = def
     , ("M-s"            , spawn $ "setxkbmap" ++ myKeyboardLayoutSK                                 )
     , ("M-S-v"          , namedScratchpadAction myScratchpads "Windscribe"                          )
     , ("M-S-s"          , namedScratchpadAction myScratchpads "Terminal"                            )
+    , ("M-S-a"          , namedScratchpadAction myScratchpads "Cal"                                 )
     , ("M-x"            , spawn "bluetoothctl connect E8:EE:CC:3E:A6:0D"                            )
     , ("M-S-x"          , spawn "bluetoothctl disconnect E8:EE:CC:3E:A6:0D"                         )
     ]
@@ -187,8 +192,8 @@ myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "mons -e left && ~/.fehbg"
     spawnOnce "xautolock -time 10 -locker slock -detectsleep"
-    spawnOnce "trayer --edge top --align right --SetDockType true \
-              \--SetPartialStrut true --expand true --width 7 \
+    spawnOnce "trayer -l --edge top --align right --SetDockType true \
+              \--SetPartialStrut true --expand true --widthtype request \
               \--transparent true --tint 0x232634 --height 18 \
               \--monitor 0"
     spawnOnce "redshift-gtk"
