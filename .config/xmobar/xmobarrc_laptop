@@ -49,9 +49,10 @@ Config { overrideRedirect   = False
                               , Run Uptime
                                 [ "--template"  , "\xf017  Uptime: <days>d <hours>h <minutes>m"
                                 ] 600
+                              , Run Com "/home/fuxino/.config/xmobar/pactl_volume.sh" [] "pactl_volume" 10
                               , Run XMonadLog
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date% "
+        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date%  %pactl_volume% "
         }

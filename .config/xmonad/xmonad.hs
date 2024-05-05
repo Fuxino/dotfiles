@@ -176,7 +176,7 @@ myXmobarPP = def
         formatUnfocused = wrap (surface0    "[") (surface0  "]") . white . ppWindow
 
         ppWindow :: String -> String
-        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+        ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 20
 
         surface0, teal, red, white, yellow :: String -> String
         teal        = xmobarColor "#81c8be" ""
