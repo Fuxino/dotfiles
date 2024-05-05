@@ -145,6 +145,7 @@ map gp cd ~/Pictures
 map ga cd /run/user/1000/gvfs
 map gw cd ~/Downloads
 map go cd ~/Documents
+map gr cd /
 
 # archives
 map ax extract
