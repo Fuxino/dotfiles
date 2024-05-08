@@ -55,5 +55,5 @@ Config { overrideRedirect   = True
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date%  %pactl_volume% %_XMONAD_TRAYPAD%"
+        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date% %pactl_volume% %_XMONAD_TRAYPAD%"
         }

@@ -1,4 +1,4 @@
-Config { overrideRedirect   = False
+Config { overrideRedirect   = True
        , lowerOnStart       = True
        , font               = "Jetbrains Mono Nerd Font Bold 9"
        , bgColor            = "#232634"
@@ -54,5 +54,5 @@ Config { overrideRedirect   = False
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date%  %pactl_volume% "
+        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %date% %pactl_volume% "
         }
