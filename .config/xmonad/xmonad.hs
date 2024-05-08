@@ -1,9 +1,10 @@
 -- Import
 import XMonad
+import Data.Default
+import Data.Monoid
 
 -- Actions
 import XMonad.Actions.PhysicalScreens
-import Data.Default
 
 -- Hooks
 import XMonad.Hooks.DynamicLog
@@ -97,7 +98,7 @@ myConfig = def
     , layoutHook            = myLayoutHook
     , startupHook           = myStartupHook
     , manageHook            = myManageHook
-    , handleEventHook       = handleEventHook def <> Hacks.trayerAboveXmobarEventHook <> Hacks.trayerPaddingXmobarEventHook
+    , handleEventHook       = myHandleEventHook
     }
     `additionalKeysP`
     [ ("M-S-l"          , spawn "slock"                                                             )
@@ -207,6 +208,7 @@ myStartupHook = do
 myManageHook ::  ManageHook
 myManageHook = composeAll
     [ className =? "Gpodder"                --> doShift "5:\xead9 "
+    , className =? "An Anime Game Launcher" --> doShift "3:\xf1b6 "
     , className =? "MuPDF"                  --> doShift "6:\xeb69 "
     , className =? "Qalculate-gtk"          --> doFloat
     , className =? "Signal"                 --> doShift "4:\xf10b "
@@ -229,3 +231,9 @@ myManageHook = composeAll
     , isDialog                              --> doFloat
     , isFullscreen                          --> doFullFloat
     ] <+> namedScratchpadManageHook myScratchpads
+
+--Handle event hook
+myHandleEventHook :: Event -> X All
+myHandleEventHook = handleEventHook def
+                    <> Hacks.trayerAboveXmobarEventHook
+                    <> Hacks.trayerPaddingXmobarEventHook
