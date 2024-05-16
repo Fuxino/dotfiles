@@ -17,6 +17,7 @@ import XMonad.Hooks.StatusBar.PP
 
 -- Layouts
 import XMonad.Layout.Grid
+import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -139,9 +140,9 @@ myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 "
 -- Layout
 myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
     where
-        myWebLayout = avoidStruts $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral(0.856)
-        myGamesLayout = avoidStruts $ Full
-        myDefaultLayout = avoidStruts $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
+        myWebLayout = avoidStruts $ smartBorders $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral(0.856)
+        myGamesLayout = avoidStruts $ smartBorders Full
+        myDefaultLayout = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
         threeCol
             = renamed [Replace "ThreeCol"]
             $ magnifiercz' 1.3
@@ -203,19 +204,21 @@ myStartupHook = do
     spawnOnce "arch-audit-gtk"
     spawnOnce "calcurse --daemon"
     spawnOnce "dunst"
+    spawnOnce "mousemove"
 
 -- Manage hook
 myManageHook ::  ManageHook
 myManageHook = composeAll
     [ className =? "Gpodder"                --> doShift "5:\xead9 "
     , className =? "An Anime Game Launcher" --> doShift "3:\xf1b6 "
-    , className =? "MuPDF"                  --> doShift "6:\xeb69 "
     , className =? "Qalculate-gtk"          --> doFloat
     , className =? "Signal"                 --> doShift "4:\xf10b "
     , className =? "Spotify"                --> doShift "5:\xead9 "
+    , className =? "Transmission-gtk"       --> doShift "2:\xe743 "
     , className =? "Viewnior"               --> doFloat
     , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
     , className =? "Xmessage"               --> doFloat
+    , className =? "Xreader"                --> doShift "6:\xeb69 "
     , className =? "Xscreensaver-settings"  --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
@@ -227,7 +230,6 @@ myManageHook = composeAll
     , className =? "mpv"                    --> doShift "5:\xead9 "
     , className =? "steam"                  --> doShift "3:\xf1b6 "
     , className =? "steam_app_109600"       --> doFloat
-    , className =? "transmission-gtk"       --> doShift "2:\xe743 "
     , isDialog                              --> doFloat
     , isFullscreen                          --> doFullFloat
     ] <+> namedScratchpadManageHook myScratchpads
