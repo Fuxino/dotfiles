@@ -205,6 +205,7 @@ myStartupHook = do
     spawnOnce "calcurse --daemon"
     spawnOnce "dunst"
     spawnOnce "mousemove"
+    spawnOnce "lxpolkit"
 
 -- Manage hook
 myManageHook ::  ManageHook
@@ -224,6 +225,7 @@ myManageHook = composeAll
     , className =? "discord"                --> doShift "4:\xf10b "
     , className =? "feh"                    --> doFloat
     , className =? myTerminal               --> doShift "1:\xf489 "
+    , className =? "library_manager"        --> doShift "6:\xeb69 "
     , className =? "libreoffice-calc"       --> doShift "6:\xeb69 "
     , className =? "libreoffice-writer"     --> doShift "6:\xeb69 "
     , className =? "mpv"                    --> doFullFloat
