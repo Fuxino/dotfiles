@@ -9,6 +9,7 @@ import XMonad.Actions.PhysicalScreens
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.FloatConfigureReq
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -206,6 +207,7 @@ myStartupHook = do
     spawnOnce "dunst"
     spawnOnce "mousemove"
     spawnOnce "lxpolkit"
+    spawnOnce "numlockx"
 
 -- Manage hook
 myManageHook ::  ManageHook
@@ -241,3 +243,4 @@ myHandleEventHook :: Event -> X All
 myHandleEventHook = handleEventHook def
                     <> Hacks.trayerAboveXmobarEventHook
                     <> Hacks.trayerPaddingXmobarEventHook
+                    <> Hacks.fixSteamFlicker
