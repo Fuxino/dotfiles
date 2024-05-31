@@ -198,16 +198,17 @@ myStartupHook = do
     spawnOnce "trayer -l --edge top --align right --SetDockType true \
               \--SetPartialStrut true --expand true --widthtype request \
               \--transparent true --tint 0x232634 --height 18 \
-              \--monitor 0"
+              \--monitor 1"
     spawnOnce "redshift-gtk"
     spawnOnce "udiskie"
     spawnOnce "nm-applet"
     spawnOnce "arch-audit-gtk"
     spawnOnce "calcurse --daemon"
     spawnOnce "dunst"
-    spawnOnce "mousemove"
     spawnOnce "lxpolkit"
     spawnOnce "numlockx"
+    spawnOnce "blueman-applet"
+    spawnOnce "mousemove"
 
 -- Manage hook
 myManageHook ::  ManageHook
