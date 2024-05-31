@@ -29,6 +29,7 @@ set grepprg=grep\ -nH\ $*
 call plug#begin()
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
 
@@ -38,6 +39,8 @@ let g:ale_enabled=0
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
 " let g:everforest_background='hard'
 " let g:everforest_better_performance=1
+let g:tokyonight_style='storm'
+let g:tokyonight_enable_italic=1
 let g:rainbow_active=1
 let g:tex_flavor='latex'
 
@@ -80,6 +83,5 @@ au BufRead /tmp/mutt-* set tw=144
 
 " }}}
 
-
-
-colorscheme catppuccin_frappe
+" colorscheme catppuccin_frappe
+colorscheme tokyonight
