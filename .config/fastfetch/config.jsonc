@@ -128,21 +128,6 @@
             "keyColor": "green"
         },
         {
-            "type": "sound",
-            "key": " SND",
-            "keyColor": "cyan"
-        },
-        {
-            "type": "player",
-            "key": "│ ├󰥠",
-            "keyColor": "cyan"
-        },
-        {
-            "type": "media",
-            "key": "│ └󰝚",
-            "keyColor": "cyan"
-        },
-        {
             "type": "custom",
             "format": "\u001b[90m└────────────────────────────────────────────────────────────┘"
         },

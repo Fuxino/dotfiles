@@ -1,0 +1,4 @@
+Xcursor.theme: catppuccin-frappe-blue-cursors
+
+*.Dialog.bodyFont: Jetbrains Mono Nerd Font
+*.Dialog.headingFont: Jetbrains Mono Nerd Font

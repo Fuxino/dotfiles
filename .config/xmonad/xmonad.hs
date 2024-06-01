@@ -60,10 +60,10 @@ myBrowser :: String
 myBrowser = "vivaldi"
 
 myNormBorderColor :: String
-myNormBorderColor = "#232634"
+myNormBorderColor = "#1f2335"
 
 myFocusBorderColor :: String
-myFocusBorderColor = "#81c8be"
+myFocusBorderColor = "#41a6b5"
 
 myKeyboardLayoutIT :: String
 myKeyboardLayoutIT = " -layout it"
@@ -151,8 +151,8 @@ myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myG
         myTabbed
             = renamed [Replace "Tabbed"]
             $ tabbed shrinkText myTabConfig
-        myTabConfig = def { activeColor     = "#737994"
-                          , inactiveColor   = "#232634"
+        myTabConfig = def { activeColor     = "#737aa2"
+                          , inactiveColor   = "#24283b"
                           }
         tiled       = Tall nmaster delta ratio
         nmaster     = 1
@@ -165,28 +165,28 @@ xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmo
 
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep             = teal " • "
+    { ppSep             = moonstone " • "
     , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#81c8be" 2
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = surface0 . wrap " " ""
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
+    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#41a6b5" 2
+    , ppHidden          = cultured . wrap " " ""
+    , ppHiddenNoWindows = policeblue . wrap " " ""
+    , ppUrgent          = brickred . wrap (topaz "!") (topaz "!")
     , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     }
     where
-        formatFocused   = wrap (white       "[") (white     "]") . teal . ppWindow
-        formatUnfocused = wrap (surface0    "[") (surface0  "]") . white . ppWindow
+        formatFocused   = wrap (cultured       "[") (cultured     "]") . moonstone . ppWindow
+        formatUnfocused = wrap (policeblue    "[") (policeblue  "]") . cultured . ppWindow
 
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 20
 
-        surface0, teal, red, white, yellow :: String -> String
-        teal        = xmobarColor "#81c8be" ""
-        white       = xmobarColor "#f8f8f2" ""
-        yellow      = xmobarColor "#e5c890" ""
-        red         = xmobarColor "#e78284" ""
-        surface0    = xmobarColor "#414559" ""
+        policeblue, moonstone, brickred, cultured, topaz :: String -> String
+        moonstone   = xmobarColor "#41a6b5" ""
+        cultured    = xmobarColor "#f8f8f2" ""
+        topaz       = xmobarColor "#ffc777" ""
+        brickred    = xmobarColor "#c53b53" ""
+        policeblue    = xmobarColor "#414868" ""
 
 -- Autostart
 myStartupHook :: X ()
@@ -198,7 +198,7 @@ myStartupHook = do
     spawnOnce "trayer -l --edge top --align right --SetDockType true \
               \--SetPartialStrut true --expand true --widthtype request \
               \--transparent true --tint 0x232634 --height 18 \
-              \--monitor 1"
+              \--monitor 0"
     spawnOnce "redshift-gtk"
     spawnOnce "udiskie"
     spawnOnce "nm-applet"

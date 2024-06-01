@@ -1,58 +1,59 @@
 Config { overrideRedirect   = True
        , lowerOnStart       = True
        , font               = "Jetbrains Mono Nerd Font Bold 9"
-       , bgColor            = "#232634"
-       , fgColor            = "#626880"
+       , bgColor            = "#24283b"
+       , fgColor            = "#737aa2"
        , position           = Top
        , border             = NoBorder
-       , borderColor        = "#232634" 
+       , borderColor        = "#24283b" 
        , allDesktops        = True
        , pickBroadest       = True
        , commands           = [ Run Weather "LZIB"
                                 [ "--template", "\xe302  <station>: <tempC>°C"
                                 , "-L", "5"
                                 , "-H", "25"
-                                , "--low"       , "#8caaee"
-                                , "--normal"    , "#a6d189"
-                                , "--high"      , "#eebebe"
+                                , "--low"       , "#7aa2f7"
+                                , "--normal"    , "#c3e88d"
+                                , "--high"      , "#ff757f"
                                 ] 9000
                               , Run MultiCpu
                                 [ "--template"  , "\xf4bc  Cpu: <total>%"
                                 , "--Low"       , "25"
                                 , "--High"      , "75"
-                                , "--low"       , "#a6d189"
-                                , "--normal"    , "#ef9f76"
-                                , "--high"      , "#eebebe"
+                                , "--low"       , "#c3e88d"
+                                , "--normal"    , "#ff9e64"
+                                , "--high"      , "#ff757f"
                                 ] 10
                               , Run CoreTemp
                                 [ "--template"  , "Temp: <core0>°C"
                                 , "--Low"       , "60"
                                 , "--High"      , "85"
-                                , "--low"       , "#a6d189"
-                                , "--normal"    , "#ef9f76"
-                                , "--high"      , "#eebebe"
+                                , "--low"       , "#c3e88d"
+                                , "--normal"    , "#ff9e64"
+                                , "--high"      , "#ff757f"
                                 ] 50
                               , Run Memory
                                 [ "--template"  , "\xefc5  Mem: <usedratio>%" 
                                 , "--Low"       , "20"
                                 , "--High"      , "60"
-                                , "--low"       , "#a6d189"
-                                , "--normal"    , "#ef9f76"
-                                , "--high"      , "#eebebe"
+                                , "--low"       , "#c3e88d"
+                                , "--normal"    , "#ff9e64"
+                                , "--high"      , "#ff757f"
                                 ] 50
                               , Run Kbd
-                                [ ("it"         , "<fc=#a6d189>IT</fc>") 
-                                , ("us"         , "<fc=#ef9f76>US</fc>")
-                                , ("sk(qwerty)" , "<fc=#eebebe>SK</fc>")
+                                [ ("it"         , "<fc=#c3e88d>IT</fc>") 
+                                , ("us"         , "<fc=#ff9e64>US</fc>")
+                                , ("sk(qwerty)" , "<fc=#ff757f>SK</fc>")
                                 ]
-                              , Run Date "\xf133  %a %Y-%m-%d <fc=#81c8be>%H:%M</fc>" "date" 10
+                              , Run Date "\xf133  %a %Y-%m-%d <fc=#41a6b5>%H:%M</fc>" "date" 10
                               , Run Uptime
                                 [ "--template"  , "\xf017  Uptime: <days>d <hours>h <minutes>m"
                                 ] 600
+                              , Run XPropertyLog "_XMONAD_TRAYPAD"
                               , Run Com "/home/fuxino/.config/xmobar/pactl_volume.sh" [] "pactl_volume" 10
                               , Run XMonadLog
                               ]
         , sepChar           = "%"
         , alignSep          = "}{"
-        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %pactl_volume% | %date% "
+        , template          = "  | %XMonadLog% } %uptime% | %multicpu%, %coretemp% | %memory% |   %kbd% { %LZIB% | %pactl_volume% | %date% %_XMONAD_TRAYPAD% "
         }
