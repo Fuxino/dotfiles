@@ -226,6 +226,7 @@ myManageHook = composeAll
     , className =? "Xscreensaver-settings"  --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
+    , className =? "explorer.exe"           --> doShift "3:\xf1b6 "
     , className =? "feh"                    --> doFloat
     , className =? myTerminal               --> doShift "1:\xf489 "
     , className =? "library_manager"        --> doShift "6:\xeb69 "
