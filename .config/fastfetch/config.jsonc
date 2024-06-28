@@ -68,6 +68,11 @@
             "keyColor": "blue"
         },
         {
+            "type": "font",
+            "key": "│ ├",
+            "keyColor": "blue"
+        },
+        {
             "type": "icons",
             "key": "│ ├󰀻",
             "keyColor": "blue"
