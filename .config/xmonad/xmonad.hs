@@ -236,6 +236,7 @@ myManageHook = composeAll
     , className =? "mpv"                    --> doShift "5:\xead9 "
     , className =? "steam"                  --> doShift "3:\xf1b6 "
     , className =? "steam_app_109600"       --> doFloat
+    , className =? "transmission-gtk"       --> doShift "2:\xe743 "
     , isDialog                              --> doFloat
     , isFullscreen                          --> doFullFloat
     ] <+> namedScratchpadManageHook myScratchpads
