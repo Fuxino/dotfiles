@@ -68,11 +68,6 @@
             "keyColor": "blue"
         },
         {
-            "type": "font",
-            "key": "│ ├",
-            "keyColor": "blue"
-        },
-        {
             "type": "icons",
             "key": "│ ├󰀻",
             "keyColor": "blue"
@@ -83,6 +78,11 @@
             "keyColor": "blue"
         },
         {
+            "type": "font",
+            "key": "│ ├",
+            "keyColor": "blue"
+        },
+        {
             "type": "terminal",
             "key": "│ ├",
             "keyColor": "blue"
@@ -90,11 +90,6 @@
         {
             "type": "terminalfont",
             "key": "│ ├",
-            "keyColor": "blue"
-        },
-        {
-            "type": "wallpaper",
-            "key": "│ └󰸉",
             "keyColor": "blue"
         },
         {
