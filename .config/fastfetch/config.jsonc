@@ -73,13 +73,13 @@
             "keyColor": "blue"
         },
         {
-            "type": "cursor",
-            "key": "│ ├󰇀",
+            "type": "font",
+            "key": "│ ├",
             "keyColor": "blue"
         },
         {
-            "type": "font",
-            "key": "│ ├",
+            "type": "cursor",
+            "key": "│ ├󰇀",
             "keyColor": "blue"
         },
         {
