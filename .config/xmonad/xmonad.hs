@@ -223,7 +223,6 @@ myManageHook = composeAll
     , className =? "Vivaldi-stable"         --> doShift "2:\xe743 "
     , className =? "Xmessage"               --> doFloat
     , className =? "Xreader"                --> doShift "6:\xeb69 "
-    , className =? "Xscreensaver-settings"  --> doFloat
     , className =? "calibre"                --> doShift "6:\xeb69 "
     , className =? "discord"                --> doShift "4:\xf10b "
     , className =? "explorer.exe"           --> doShift "3:\xf1b6 "
