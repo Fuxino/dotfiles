@@ -34,8 +34,8 @@ Config { overrideRedirect   = True
                                 ] 50
                               , Run Memory
                                 [ "--template"  , "\xefc5  Mem: <usedratio>%" 
-                                , "--Low"       , "20"
-                                , "--High"      , "60"
+                                , "--Low"       , "33"
+                                , "--High"      , "66"
                                 , "--low"       , "#c3e88d"
                                 , "--normal"    , "#ff9e64"
                                 , "--high"      , "#ff757f"
