@@ -28,7 +28,7 @@ embedart:
   remove_art_file: yes
 smartplaylist:
   relative_to: ~/Music
-  playlist_dir: ~/.config/mpd/playlists
+  playlist_dir: ~/.local/share/mpd/playlists
   playlists:
     - name: Metal_Before_90s.m3u
       query: 'genre:Metal original_year:..1989'
