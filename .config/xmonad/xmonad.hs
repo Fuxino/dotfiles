@@ -83,12 +83,14 @@ myScratchpads =
     , NS "Music" spawnMusic (title =? "ncmpcpp") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     , NS "Mail" spawnMail (title =? "mutt") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     , NS "Cal" spawnCal (title =? "calcurse") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
+    , NS "Btop" spawnBtop (title =? "btop") (customFloating $ W.RationalRect 0.2 0.2 0.6 0.6)
     ]
     where
         spawnTerminal = myTerminal ++ " -T kitty-float"
         spawnMusic = myTerminal ++ " -T ncmpcpp ncmpcpp"
         spawnMail = myTerminal ++ " -T mutt bash -c 'pushd ~/Downloads > /dev/null; mutt; popd > /dev/null'"
         spawnCal = myTerminal ++ " -T calcurse calcurse"
+        spawnBtop = myTerminal ++ " -T btop btop"
 
 -- Config
 myConfig = def
@@ -116,6 +118,7 @@ myConfig = def
     , ("M-S-v"          , namedScratchpadAction myScratchpads "Windscribe"                          )
     , ("M-S-s"          , namedScratchpadAction myScratchpads "Terminal"                            )
     , ("M-S-a"          , namedScratchpadAction myScratchpads "Cal"                                 )
+    , ("M-o"            , namedScratchpadAction myScratchpads "Btop"                                )
     , ("M-x"            , spawn "bluetoothctl connect E8:EE:CC:3E:A6:0D"                            )
     , ("M-S-x"          , spawn "bluetoothctl disconnect E8:EE:CC:3E:A6:0D"                         )
     ]
@@ -208,7 +211,6 @@ myStartupHook = do
     spawnOnce "lxpolkit"
     spawnOnce "numlockx"
     spawnOnce "blueman-applet"
-    spawnOnce "mousemove"
 
 -- Manage hook
 myManageHook ::  ManageHook
