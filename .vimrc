@@ -33,10 +33,11 @@ Plug 'ghifarit53/tokyonight-vim'
 
 call plug#end()
 
-let g:ale_linters={'python': ['pylint'], 'c': ['cc'], 'sh': ['shell'], 'tex': ['lacheck'], 'haskell': ['hlint']}
+let g:ale_linters={'python': ['pylint'], 'c': ['cc'], 'sh': ['shell'], 'tex': ['lacheck'], 'haskell': ['ghc', 'hlint']}
 let g:ale_linters_explicit=1
 let g:ale_enabled=1
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
+let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
 " let g:everforest_background='hard'
 " let g:everforest_better_performance=1
 let g:tokyonight_style='storm'
