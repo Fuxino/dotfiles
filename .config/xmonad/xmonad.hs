@@ -106,9 +106,9 @@ myConfig = def
     }
     `additionalKeysP`
     [ ("M-S-l"          , spawn "slock"                                                             )
-    , ("<Print>"        , unGrab *> (spawn $ "scrot " ++ myScreenshotDir ++ myScreenshotName)       )
-    , ("S-<Print>"      , unGrab *> (spawn $ "scrot -s " ++ myScreenshotDir ++ myScreenshotName)    )
-    , ("M-S-<Print>"    , unGrab *> (spawn $ "scrot -u " ++ myScreenshotDir ++ myScreenshotName)    )
+    , ("<Print>"        , unGrab *> spawn ("scrot " ++ myScreenshotDir ++ myScreenshotName)         )
+    , ("S-<Print>"      , unGrab *> spawn ("scrot -s " ++ myScreenshotDir ++ myScreenshotName)      )
+    , ("M-S-<Print>"    , unGrab *> spawn ("scrot -u " ++ myScreenshotDir ++ myScreenshotName)      )
     , ("M-d"            , spawn "dmenu_run"                                                         )
     , ("M-p"            , spawn "passmenu -i"                                                       )
     , ("M-f"            , sendMessage $ JumpToLayout "Tabbed"                                       )
@@ -142,11 +142,11 @@ myWorkspaces :: [String]
 myWorkspaces = [ "1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 ", "6:\xeb69 " ] ++ map show [7..9]
 
 -- Layout
-myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout $ myDefaultLayout
+myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout myDefaultLayout
     where
-        myWebLayout = avoidStruts $ smartBorders $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral(0.856)
+        myWebLayout = avoidStruts $ smartBorders $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral 0.856
         myGamesLayout = avoidStruts $ smartBorders Full
-        myDefaultLayout = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral(0.856)
+        myDefaultLayout = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral 0.856
         threeCol
             = renamed [Replace "ThreeCol"]
             $ magnifiercz' 1.3

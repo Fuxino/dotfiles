@@ -35,5 +35,6 @@ symbol = " "
 
 [rust]
 symbol = " "
+
 [sudo]
 disabled = false
