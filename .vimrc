@@ -38,10 +38,10 @@ let g:ale_linters_explicit=1
 let g:ale_enabled=1
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
 let g:ale_haskell_ghc_options = '-fno-code -v0 -dynamic'
-" let g:everforest_background='hard'
-" let g:everforest_better_performance=1
-let g:tokyonight_style='storm'
-let g:tokyonight_enable_italic=1
+let g:everforest_background='hard'
+let g:everforest_better_performance=1
+" let g:tokyonight_style='storm'
+" let g:tokyonight_enable_italic=1
 let g:rainbow_active=1
 let g:tex_flavor='latex'
 
@@ -85,4 +85,9 @@ au BufRead /tmp/mutt-* set tw=144
 " }}}
 
 " colorscheme catppuccin_frappe
+" colorscheme everforest
 colorscheme tokyonight
+
+if &diff
+    colorscheme catppuccin_frappe
+endif
