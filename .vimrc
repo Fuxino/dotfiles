@@ -30,6 +30,7 @@ call plug#begin()
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
@@ -86,8 +87,9 @@ au BufRead /tmp/mutt-* set tw=144
 
 " colorscheme catppuccin_frappe
 " colorscheme everforest
-colorscheme tokyonight
+" colorscheme tokyonight
+colorscheme dracula
 
-if &diff
-    colorscheme catppuccin_frappe
-endif
+"if &diff
+"    colorscheme catppuccin_frappe
+"endif

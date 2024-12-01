@@ -168,28 +168,28 @@ xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmo
 
 myXmobarPP :: PP
 myXmobarPP = def
-    { ppSep             = moonstone " • "
+    { ppSep             = pink " • "
     , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#41a6b5" 2
+    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#ff79c6" 2
     , ppHidden          = cultured . wrap " " ""
-    , ppHiddenNoWindows = policeblue . wrap " " ""
-    , ppUrgent          = brickred . wrap (topaz "!") (topaz "!")
+    , ppHiddenNoWindows = outerspace . wrap " " ""
+    , ppUrgent          = sunsetorange . wrap (keylime "!") (keylime "!")
     , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     }
     where
-        formatFocused   = wrap (cultured       "[") (cultured     "]") . moonstone . ppWindow
-        formatUnfocused = wrap (policeblue    "[") (policeblue  "]") . cultured . ppWindow
+        formatFocused   = wrap (cultured       "[") (cultured     "]") . pink . ppWindow
+        formatUnfocused = wrap (outerspace    "[") (outerspace  "]") . cultured . ppWindow
 
         ppWindow :: String -> String
         ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 20
 
-        policeblue, moonstone, brickred, cultured, topaz :: String -> String
-        moonstone   = xmobarColor "#41a6b5" ""
-        cultured    = xmobarColor "#f8f8f2" ""
-        topaz       = xmobarColor "#ffc777" ""
-        brickred    = xmobarColor "#c53b53" ""
-        policeblue    = xmobarColor "#414868" ""
+        outerspace, pink, sunsetorange, cultured, keylime :: String -> String
+        pink            = xmobarColor "#ff79c6" ""
+        cultured        = xmobarColor "#f8f8f2" ""
+        keylime         = xmobarColor "#f1fa8c" ""
+        sunsetorange    = xmobarColor "#ff5555" ""
+        outerspace      = xmobarColor "#44475a" ""
 
 -- Autostart
 myStartupHook :: X ()
@@ -236,6 +236,7 @@ myManageHook = composeAll
     , className =? "mpv"                    --> doFullFloat
     , className =? "mpv"                    --> doShift "5:\xead9 "
     , className =? myTerminal               --> doShift "1:\xf489 "
+    , title     =? "Neverwinter"            --> doShift "3:\xf1b6 "
     , className =? "steam"                  --> doShift "3:\xf1b6 "
     , className =? "steam_app_109600"       --> doFloat
     , className =? "transmission-gtk"       --> doShift "2:\xe743 "

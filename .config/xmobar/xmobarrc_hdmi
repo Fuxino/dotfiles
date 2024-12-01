@@ -12,40 +12,40 @@ Config { overrideRedirect   = True
                                 [ "--template", "\xe302  <station>: <tempC>°C"
                                 , "-L", "5"
                                 , "-H", "25"
-                                , "--low"       , "#7aa2f7"
-                                , "--normal"    , "#c3e88d"
-                                , "--high"      , "#ff757f"
+                                , "--low"       , "#8be9fd"
+                                , "--normal"    , "#50fa7b"
+                                , "--high"      , "#ff5555"
                                 ] 9000
                               , Run MultiCpu
                                 [ "--template"  , "\xf4bc  Cpu: <total>%"
                                 , "--Low"       , "25"
                                 , "--High"      , "75"
-                                , "--low"       , "#c3e88d"
-                                , "--normal"    , "#ff9e64"
-                                , "--high"      , "#ff757f"
+                                , "--low"       , "#50fa7b"
+                                , "--normal"    , "#ffb86c"
+                                , "--high"      , "#ff5555"
                                 ] 10
                               , Run CoreTemp
                                 [ "--template"  , "Temp: <core0>°C"
                                 , "--Low"       , "60"
                                 , "--High"      , "85"
-                                , "--low"       , "#c3e88d"
-                                , "--normal"    , "#ff9e64"
-                                , "--high"      , "#ff757f"
+                                , "--low"       , "#50fa7b"
+                                , "--normal"    , "#ffb86c"
+                                , "--high"      , "#ff5555"
                                 ] 50
                               , Run Memory
                                 [ "--template"  , "\xefc5  Mem: <usedratio>%" 
                                 , "--Low"       , "33"
                                 , "--High"      , "66"
-                                , "--low"       , "#c3e88d"
-                                , "--normal"    , "#ff9e64"
-                                , "--high"      , "#ff757f"
+                                , "--low"       , "#50fa7b"
+                                , "--normal"    , "#ffb86c"
+                                , "--high"      , "#ff5555"
                                 ] 50
                               , Run Kbd
-                                [ ("it"         , "<fc=#c3e88d>IT</fc>") 
-                                , ("us"         , "<fc=#ff9e64>US</fc>")
-                                , ("sk(qwerty)" , "<fc=#ff757f>SK</fc>")
+                                [ ("it"         , "<fc=#50fa7b>IT</fc>") 
+                                , ("us"         , "<fc=#ffb86c>US</fc>")
+                                , ("sk(qwerty)" , "<fc=#ff5555>SK</fc>")
                                 ]
-                              , Run Date "\xf133  %a %Y-%m-%d <fc=#41a6b5>%H:%M</fc>" "date" 10
+                              , Run Date "\xf133  %a %Y-%m-%d <fc=#ff79c6>%H:%M</fc>" "date" 10
                               , Run Uptime
                                 [ "--template"  , "\xf017  Uptime: <days>d <hours>h <minutes>m"
                                 ] 600
