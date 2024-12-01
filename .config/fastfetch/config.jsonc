@@ -1,6 +1,3 @@
-// Load with --load-config examples/2.jsonc
-// Note that you must replace the image path to an existing image to display it.
-
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
@@ -9,132 +6,129 @@
         }
     },
     "display": {
-        "separator": " -> "
+        "separator": "->   ",
+        "color": {
+            "separator": "1" 
+        },
+        "constants": [
+            "───────────────────────────"
+        ],
+        "key": {
+            "type": "both",
+            "paddingLeft": 4
+        }
     },
     "modules": [
         {
-            "type": "custom",
-            "format": "\u001b[90m┌────────────────────────────────────────────────────────────┐"
-        },
-        {
             "type": "title",
-            "keyWidth": 10
-        },
-        {
-            "type": "custom",
-            "format": "\u001b[90m└────────────────────────────────────────────────────────────┘"
-        },
-        {
-            "type": "custom",
-            "format": " \u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38m  \u001b[39m       \u001b[38m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m"
-        },
-        {
-            "type": "custom",
-            "format": "\u001b[90m┌────────────────────────────────────────────────────────────┐"
-        },
-        {
-            "type": "os",
-            "key": " OS",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "kernel",
-            "key": "│ ├",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "packages",
-            "key": "│ ├󰏖",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "shell",
-            "key": "│ └",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "wm",
-            "key": " DE/WM",
-            "keyColor": "blue"
-        },
-        {
-            "type": "lm",
-            "key": "│ ├󰧨",
-            "keyColor": "blue"
-        },
-        {
-            "type": "theme",
-            "key": "│ ├󰉼",
-            "keyColor": "blue"
-        },
-        {
-            "type": "icons",
-            "key": "│ ├󰀻",
-            "keyColor": "blue"
-        },
-        {
-            "type": "font",
-            "key": "│ ├",
-            "keyColor": "blue"
-        },
-        {
-            "type": "cursor",
-            "key": "│ ├󰇀",
-            "keyColor": "blue"
-        },
-        {
-            "type": "terminal",
-            "key": "│ ├",
-            "keyColor": "blue"
-        },
-        {
-            "type": "terminalfont",
-            "key": "│ ├",
-            "keyColor": "blue"
-        },
-        {
-            "type": "host",
-            "key": "󰌢 PC",
-            "keyColor": "green"
-        },
-        {
-            "type": "cpu",
-            "key": "│ ├󰻠",
-            "keyColor": "green"
-        },
-        {
-            "type": "gpu",
-            "key": "│ ├󰍛",
-            "keyColor": "green"
-        },
-        {
-            "type": "disk",
-            "key": "│ ├",
-            "keyColor": "green"
-        },
-        {
-            "type": "memory",
-            "key": "│ ├󰑭",
-            "keyColor": "green"
-        },
-        {
-            "type": "swap",
-            "key": "│ ├󰓡",
-            "keyColor": "green"
-        },
-        {
-            "type": "uptime",
-            "key": "│ ├󰅐",
-            "keyColor": "green"
-        },
-        {
-            "type": "custom",
-            "format": "\u001b[90m└────────────────────────────────────────────────────────────┘"
+            "format": "                             {user-name-colored}{at-symbol-colored}{host-name-colored}"
         },
         "break",
         {
             "type": "custom",
-            "format": " \u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38m  \u001b[39m       \u001b[38m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m"
+            "format": "┌{$1} {#1}System Information{#} {$1}┐"
+        },
+        "break",
+        {
+            "key": "Machine       ",
+            "keyColor": "green",
+            "type": "host"
+        },
+        {
+            "key": "OS            ",
+            "keyColor": "red",
+            "type": "os"
+        },
+        {
+            "key": "Kernel        ",
+            "keyColor": "magenta",
+            "type": "kernel"
+        },
+        {   "key": "Packages      ",
+            "keyColor": "blue",
+            "type": "packages"
+        },
+        {
+            "key": "Shell         ",
+            "keyColor": "cyan",
+            "type": "shell"
+        },
+        {
+            "key": "WM            ",
+            "keyColor": "yellow",
+            "type": "wm"
+        },
+        {
+            "key": "Theme         ",
+            "keyColor": "green",
+            "type": "theme"
+        },
+        {   "key": "Icons         ",
+            "keyColor": "red",
+            "type": "icons"
+        },
+        {
+            "key": "Cursor        ",
+            "keyColor": "magenta",
+            "type": "cursor"
+        },
+        {
+            "key": "Terminal      ",
+            "keyColor": "blue",
+            "type": "terminal"
+        },
+        {
+            "key": "Font          ",
+            "keyColor": "cyan",
+            "type": "font"
+        },
+        {
+            "key": "Terminal Font ",
+            "keyColor": "yellow",
+            "type": "terminalfont"
+        },
+        {
+            "key": "CPU           ",
+            "keyColor": "green",
+            "type": "cpu",
+            "temp": true
+        },
+        {
+            "key": "GPU           ",
+            "keyColor": "red",
+            "type": "gpu",
+            "temp": true
+        },
+        {
+            "key": "Disk          ",
+            "keyColor": "magenta",
+            "type": "disk"
+        },
+        {
+            "key": "Memory        ",
+            "keyColor": "blue",
+            "type": "memory"
+        },
+        {
+            "key": "Swap          ",
+            "keyColor": "cyan",
+            "type": "swap"
+        },
+        {
+            "key": "Uptime        ",
+            "keyColor": "yellow",
+            "type": "uptime"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "└{$1}────────────────────{$1}┘"
+        },
+        "break",
+        {
+            "type": "colors",
+            "paddingLeft": 34,
+            "symbol": "circle"
         }
     ]
 }
