@@ -38,6 +38,14 @@ let g:ale_linters={'python': ['pylint'], 'c': ['cc'], 'sh': ['shell'], 'tex': ['
 let g:ale_linters_explicit=1
 let g:ale_enabled=1
 let g:ale_python_pylint_options='--max-line-length=160 --disable=missing-docstring --disable=invalid-name'
+
+let g:ale_fixers = {
+            \    'haskell': ['ormolu', 'remove_trailing_lines', 'trim_whitespace'],
+            \    'c': ['astyle', 'remove_trailing_lines', 'trim_whitespace'],
+            \    'python': ['autopep8', 'remove_trailing_lines', 'trim_whitespace']
+            \}
+let g:ale_haskell_ormolu_options = '--no-cabal --no-dot-ormolu'
+
 " let g:everforest_background='hard'
 " let g:everforest_better_performance=1
 let g:tokyonight_style='storm'
