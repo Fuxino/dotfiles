@@ -48,8 +48,8 @@ let g:ale_haskell_ormolu_options = '--no-cabal --no-dot-ormolu'
 
 " let g:everforest_background='hard'
 " let g:everforest_better_performance=1
-let g:tokyonight_style='storm'
-let g:tokyonight_enable_italic=1
+" let g:tokyonight_style='storm'
+" let g:tokyonight_enable_italic=1
 let g:rainbow_active=1
 let g:tex_flavor='latex'
 
