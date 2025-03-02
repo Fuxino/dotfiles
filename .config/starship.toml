@@ -5,6 +5,7 @@ disabled = true
 
 [c]
 symbol = " "
+commands = [ [ 'clang', '--version' ], [ 'gcc', '--version' ] ]
 
 [directory]
 read_only = " 󰌾"
