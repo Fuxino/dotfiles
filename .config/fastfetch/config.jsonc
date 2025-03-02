@@ -68,24 +68,24 @@
             "type": "icons"
         },
         {
-            "key": "Cursor        ",
-            "keyColor": "magenta",
-            "type": "cursor"
-        },
-        {
-            "key": "Terminal      ",
-            "keyColor": "blue",
-            "type": "terminal"
-        },
-        {
             "key": "Font          ",
-            "keyColor": "cyan",
+            "keyColor": "magenta",
             "type": "font"
         },
         {
             "key": "Terminal Font ",
-            "keyColor": "yellow",
+            "keyColor": "blue",
             "type": "terminalfont"
+        },
+        {
+            "key": "Cursor        ",
+            "keyColor": "cyan",
+            "type": "cursor"
+        },
+        {
+            "key": "Terminal      ",
+            "keyColor": "yellow",
+            "type": "terminal"
         },
         {
             "key": "CPU           ",
