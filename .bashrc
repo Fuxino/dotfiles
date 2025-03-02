@@ -7,6 +7,7 @@
 
 # Complete commands when using sudo and man
 complete -cf sudo
+complete -cf doas
 complete -c man
 
 if [ -f ~/.bash_aliases ]; then
