@@ -19,6 +19,7 @@ import XMonad.Layout.Magnifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
+import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -128,14 +129,14 @@ myConfig =
 
 -- Workspaces
 myWorkspaces :: [String]
-myWorkspaces = ["1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 ", "6:\xeb69 "] ++ map show [7 .. 9]
+myWorkspaces = ["1:\xf489 ", "2:\xe743 ", "3:\xf1b6 ", "4:\xf10b ", "5:\xead9 ", "6:\xeb69 ", "7:\xea7a "] ++ map show [8, 9]
 
 -- Layout
 myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myGamesLayout myDefaultLayout
   where
-    myWebLayout = avoidStruts $ smartBorders $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral 0.856
+    myWebLayout = avoidStruts $ spacingWithEdge 3 $ myTabbed ||| tiled ||| Mirror tiled ||| threeCol ||| Grid ||| spiral 0.856
     myGamesLayout = avoidStruts $ smartBorders Full
-    myDefaultLayout = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral 0.856
+    myDefaultLayout = avoidStruts $ spacingWithEdge 3 $ tiled ||| Mirror tiled ||| myTabbed ||| threeCol ||| Grid ||| spiral 0.856
     threeCol =
       renamed [Replace "ThreeCol"] $
         magnifiercz' 1.3 $
@@ -187,15 +188,17 @@ myXmobarPP =
 -- Autostart
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55"
   spawnOnce "xsetroot -cursor_name left_ptr"
-  spawnOnce "mons -e left && ~/.fehbg"
+  --  spawnOnce "mons -e left && ~/.fehbg"
+  spawnOnce $
+    "xrandr --output HDMI-1-0 --preferred --primary --output eDP-1 --right-of HDMI-1-0 --preferred && ~/.fehbg"
+      ++ " && xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55"
   spawnOnce "xautolock -time 10 -locker slock -detectsleep"
   spawnOnce
     "trayer -l --edge top --align right --SetDockType true \
     \--SetPartialStrut true --expand true --widthtype request \
     \--transparent true --tint 0x232634 --height 18 \
-    \--monitor 0"
+    \--monitor 1"
   spawnOnce "redshift-gtk"
   spawnOnce "udiskie"
   spawnOnce "nm-applet"
@@ -205,6 +208,7 @@ myStartupHook = do
   spawnOnce "lxpolkit"
   spawnOnce "numlockx"
   spawnOnce "blueman-applet"
+  spawnOnce "mousemove"
 
 -- Manage hook
 myManageHook :: ManageHook
@@ -213,6 +217,7 @@ myManageHook =
     [ className =? "Gpodder" --> doShift "5:\xead9 ",
       className =? "An Anime Game Launcher" --> doShift "3:\xf1b6 ",
       className =? "Qalculate-gtk" --> doFloat,
+      title =? "Genshin Impact" --> doShift "3:\xf1b6 ",
       className =? "Signal" --> doShift "4:\xf10b ",
       className =? "Spotify" --> doShift "5:\xead9 ",
       className =? "Transmission-gtk" --> doShift "2:\xe743 ",
@@ -231,10 +236,13 @@ myManageHook =
       className =? "mpv" --> doFullFloat,
       className =? "mpv" --> doShift "5:\xead9 ",
       className =? myTerminal --> doShift "1:\xf489 ",
-      title =? "Neverwinter" --> doShift "3:\xf1b6 ",
+      className =? "scrcpy" --> doShift "6:\xeb69 ",
       className =? "steam" --> doShift "3:\xf1b6 ",
       className =? "steam_app_109600" --> doFloat,
       className =? "transmission-gtk" --> doShift "2:\xe743 ",
+      className =? "VirtualBox Machine" --> doShift "7:\xea7a ",
+      className =? "VirtualBox Machine" --> doFullFloat,
+      className =? "VirtualBox Manager" --> doShift "7:\xea7a ",
       isDialog --> doFloat,
       isFullscreen --> doFullFloat
     ]
