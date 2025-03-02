@@ -30,7 +30,6 @@ call plug#begin()
 
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
@@ -46,10 +45,6 @@ let g:ale_fixers = {
             \}
 let g:ale_haskell_ormolu_options = '--no-cabal --no-dot-ormolu'
 
-" let g:everforest_background='hard'
-" let g:everforest_better_performance=1
-" let g:tokyonight_style='storm'
-" let g:tokyonight_enable_italic=1
 let g:rainbow_active=1
 let g:tex_flavor='latex'
 
@@ -92,11 +87,8 @@ au BufRead /tmp/mutt-* set tw=144
 
 " }}}
 
-" colorscheme catppuccin_frappe
-" colorscheme everforest
-" colorscheme tokyonight
 colorscheme dracula
 
 "if &diff
-"    colorscheme catppuccin_frappe
+"    colorscheme dracula
 "endif
