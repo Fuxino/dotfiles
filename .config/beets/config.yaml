@@ -15,6 +15,7 @@ import:
   timid: yes
 paths:
   default: $albumartist/[$original_year]$atypes $album%aunique{}/%if{$multidisc,$disc-}$track $title
+  singleton: $artist/$title
 musicbrainz:
   searchlimit: 10
 fetchart:
