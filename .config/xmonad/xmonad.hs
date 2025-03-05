@@ -155,9 +155,8 @@ myLayoutHook = onWorkspace "2:\xe743 " myWebLayout $ onWorkspace "3:\xf1b6 " myG
     delta = 3 / 100
 
 -- Xmobar
-xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc_laptop" (pure myXmobarPP)
-
-xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmobarPP)
+xmobar1 = statusBarProp "xmobar -x 0 ~/.config/xmobar/xmobarrc_hdmi" (pure myXmobarPP)
+xmobar2 = statusBarProp "xmobar -x 1 ~/.config/xmobar/xmobarrc_laptop" (pure myXmobarPP)
 
 myXmobarPP :: PP
 myXmobarPP =
