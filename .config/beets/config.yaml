@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/musiclibrary.db
-plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info lastimport types ftintitle scrub fuzzy chroma limit replaygain random
+plugins: inline edit fetchart embedart mbsync albumtypes smartplaylist lyrics the info lastimport types ftintitle scrub fuzzy chroma limit replaygain random summarize
 format_item: %the{$artist} - %the{$album} ($original_year)$atypes - %the{$title}
 format_album: %the{$albumartist} - %the{$album} ($original_year)$atypes
 sort_item: artist+ original_year+ original_month+ album+ disc+ track+
