@@ -9,6 +9,8 @@ if status is-interactive
 
     fastfetch
 
+    fortune /usr/share/fortune/anarchism
+
     calcurse -d 7
 
     starship init fish | source
