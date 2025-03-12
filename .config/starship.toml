@@ -8,6 +8,7 @@ $directory\
 [](fg:#DA627D bg:#FCA17D)\
 $git_branch\
 $git_status\
+$git_state\
 [](fg:#FCA17D bg:#86BBD8)\
 $c\
 $conda\
@@ -24,14 +25,12 @@ $python\
 $rust\
 $scala\
 [](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
-$time\
-[ ](fg:#33658A)\
+$cmd_duration\
+[ ](fg:#06969A)\
 """
 
 # Disable the blank line at the start of the prompt
-# add_newline = false
+add_newline = true
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
@@ -81,16 +80,6 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 commands = [ [ 'clang', '--version' ], [ 'gcc', '--version' ] ]
 
-[conda]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($environment) ]($style)'
-
-[docker_context]
-symbol = " "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style)'
-
 [elixir]
 symbol = " "
 style = "bg:#86BBD8"
@@ -109,6 +98,10 @@ format = '[ $symbol $branch ]($style)'
 [git_status]
 style = "bg:#FCA17D"
 format = '[$all_status$ahead_behind ]($style)'
+
+[git_state]
+style = "bg:#FCA17D"
+format = '[$state( $progress_current/$progress_total)]($style)' 
 
 [golang]
 symbol = " "
@@ -147,7 +140,7 @@ format = '[ $symbol ($version) ]($style)'
 [python]
 symbol = " "
 style = "bg:#86BBD8"
-format= "[${symbol}${pyenv_prefix}(${version} )(($virtualenv) )]($style)"
+format= "[ ${symbol}${pyenv_prefix}(${version})(($virtualenv) )]($style)"
 
 [rust]
 symbol = ""
@@ -164,3 +157,7 @@ disabled = true
 time_format = "%R" # Hour:Minute Format
 style = "bg:#33658A"
 format = '[ ♥ $time ]($style)'
+
+[cmd_duration]
+style = "bg:#06969A"
+format = '[ took $duration]($style)'
