@@ -191,7 +191,7 @@ myStartupHook = do
   --  spawnOnce "mons -e left && ~/.fehbg"
   spawnOnce $
     "xrandr --output HDMI-1-0 --preferred --primary --output eDP-1 --right-of HDMI-1-0 --preferred && ~/.fehbg"
-      ++ " && xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55"
+      ++ " && picom"
   spawnOnce "xautolock -time 10 -locker slock -detectsleep"
   spawnOnce
     "trayer -l --edge top --align right --SetDockType true \
@@ -208,6 +208,7 @@ myStartupHook = do
   spawnOnce "numlockx"
   spawnOnce "blueman-applet"
   spawnOnce "mousemove"
+  spawnOnce "adb start-server"
 
 -- Manage hook
 myManageHook :: ManageHook
