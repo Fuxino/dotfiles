@@ -91,13 +91,11 @@
             "key": "CPU           ",
             "keyColor": "green",
             "type": "cpu",
-            "temp": true
         },
         {
             "key": "GPU           ",
             "keyColor": "red",
             "type": "gpu",
-            "temp": true
         },
         {
             "key": "Disk          ",
@@ -118,6 +116,13 @@
             "key": "Uptime        ",
             "keyColor": "yellow",
             "type": "uptime"
+        },
+        {
+            "key": "OS Age        ",
+            "keyColor": "green",
+            "keyIcon": "",
+            "type": "command",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
         },
         "break",
         {
