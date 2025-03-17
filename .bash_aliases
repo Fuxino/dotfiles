@@ -1,6 +1,7 @@
 # Aliases
 alias clean-aurutils-cache='find ~/.cache/aurutils/sync -type d -name .git -execdir git clean -xi \;'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cookie='fortune /usr/share/fortune/asoiaf | cowthink -f $(find /usr/share/cowsay/cows -type f | shuf -n 1)'
 alias fastfetch='hyfetch'
 alias ghc='stack ghc'
 alias ghci='stack ghci'

@@ -9,7 +9,7 @@ if status is-interactive
 
     fastfetch
 
-    fortune /usr/share/fortune/anarchism
+    fortune /usr/share/fortune/asoiaf | cowthink -f $(find /usr/share/cowsay/cows -type f | shuf -n 1)
 
     calcurse -d 7
 
