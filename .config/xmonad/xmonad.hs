@@ -191,7 +191,7 @@ myStartupHook = do
   --  spawnOnce "mons -e left && ~/.fehbg"
   spawnOnce $
     "xrandr --output HDMI-1-0 --preferred --primary --output eDP-1 --right-of HDMI-1-0 --preferred && ~/.fehbg"
-      ++ " && picom"
+      ++ " && picom -b -c"
   spawnOnce "xautolock -time 10 -locker slock -detectsleep"
   spawnOnce
     "trayer -l --edge top --align right --SetDockType true \
